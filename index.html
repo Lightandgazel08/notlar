@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notlar</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#ffd1e1;--mut:#f3b8cd;--acc:#5fd6e0;--card:rgba(255,255,255,.12);--line:rgba(255,255,255,.22);--g1:#04223a;--g2:#0b5a7a;--g3:#2aa6b8;--nav:rgba(3,25,40,.7)}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:#000;display:flex;flex-direction:column;height:100dvh;padding-top:env(safe-area-inset-top)}
+body.in{background:linear-gradient(165deg,var(--g1),var(--g2) 55%,var(--g3))}
+#bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+#bg span{position:absolute;bottom:-40px;opacity:.3;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(40deg)}}
+@media(prefers-reduced-motion:reduce){#bg span{animation:none;bottom:auto;top:30%}}
+header,main,nav{position:relative;z-index:1}
+header{text-align:center;padding:12px 12px 4px;position:relative}
+h1{font-family:Fraunces,Georgia,serif;font-size:1.9rem}
+h2{font-family:Fraunces,Georgia,serif;font-size:1.5rem;margin-bottom:6px}
+h3{margin:16px 0 8px;color:var(--mut);font-size:1rem}
+p{color:var(--mut);line-height:1.5}
+main{flex:1;min-height:0}
+.tab{display:none;height:100%;overflow:auto;padding:14px 16px;text-align:center}
+.tab.on{display:block}
+#t-chat.on{display:flex;flex-direction:column;padding:0;text-align:left}
+nav{display:flex;background:var(--nav);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;color:var(--mut);font:700 .78rem Nunito;padding:9px 2px;cursor:pointer}
+nav button b{display:block;font-size:1.4rem}
+nav button{position:relative}
+nav button.on{color:#ffd1e1;background:color-mix(in srgb,var(--acc) 30%,transparent)}
+button{font-family:inherit}
+.btn{background:var(--acc);color:#ffd1e1;border:0;border-radius:14px;padding:12px 18px;font:700 1rem Nunito;cursor:pointer;margin:8px 4px;min-height:46px}
+.btn.alt{background:var(--card);border:1px solid var(--line)}
+button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.box{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.box div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 4px}
+.box b{display:block;font:700 1.9rem Fraunces,serif}
+.box small{color:var(--mut)}
+.big{font:700 3.2rem Fraunces,serif;color:#ffd1e1}
+#cake{width:min(300px,80%);margin:8px auto;display:block;overflow:visible}
+#cn g{cursor:pointer}
+#cb{cursor:pointer}
+#bl{position:fixed;inset:0;pointer-events:none;z-index:19;overflow:hidden}
+.bln{position:absolute;bottom:-70px;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-120vh) rotate(8deg)}}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.gift{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:16px;padding:14px 8px;min-height:120px;font:700 .95rem Nunito;cursor:pointer}
+.gift span{display:block;font-size:2.4rem}
+.gift.open{font-weight:400;font-size:.9rem;line-height:1.45;background:rgba(255,111,159,.3)}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:20}
+.gm{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gm button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:16px;padding:16px 6px;font:700 1rem Nunito;cursor:pointer}
+.gm button span{display:block;font-size:2rem}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:12px auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:270px;margin:12px auto}
+.cd,.cell{aspect-ratio:1;font-size:1.8rem;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--ink);cursor:pointer}
+.cell{font-size:2.4rem;font-weight:700}
+.cd.ok2{background:rgba(255,111,159,.45)}
+.sel{background:rgba(255,111,159,.5)}
+.row{display:flex;gap:10px;justify-content:center;margin:12px 0}
+.row .cell{width:84px}
+#ha{position:relative;height:280px;max-width:340px;margin:12px auto;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hb{position:absolute;font-size:2.4rem;background:none;border:0;cursor:pointer}
+#msgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:80%;padding:9px 13px;border-radius:16px;background:var(--card);border:1px solid var(--line);align-self:flex-start;overflow-wrap:anywhere}
+.m.me{align-self:flex-end;background:var(--acc);border-color:var(--acc)}
+.ch{padding:6px 14px 0;text-align:right}
+.ch button{background:none;border:1px solid var(--line);border-radius:10px;color:var(--mut);font:600 .8rem Nunito;padding:6px 10px;cursor:pointer}
+#pres{font-size:.85rem;color:var(--mut);margin-top:4px;min-height:1.2em}
+.pd{display:inline-block;width:10px;height:10px;border-radius:50%;background:#7a5a68;margin-right:5px}
+.pd.on{background:#4cd964;box-shadow:0 0 6px #4cd964}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw.sel{outline:3px solid #fff}
+.gm .wide{grid-column:1/-1;padding:12px;display:flex;align-items:center;justify-content:center;gap:10px}
+.gm .wide span{display:inline;font-size:1.5rem}
+#gear{position:absolute;right:10px;top:10px;background:none;border:0;font-size:1.5rem;cursor:pointer;z-index:2}
+#set{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+#set .card{background:var(--g1);border:1px solid var(--line);border-radius:20px;padding:20px;width:100%;max-width:340px;text-align:center}
+.thm{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px}
+.thm button{border:2px solid var(--line);border-radius:14px;height:64px;color:#ffd1e1;font:700 .8rem Nunito;cursor:pointer}
+.thm button.sel{outline:3px solid #fff}
+.chk{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0;color:var(--ink)}
+.chk input{flex:none;width:20px;height:20px}
+#nb{position:absolute;top:3px;left:54%;min-width:18px;height:18px;border-radius:9px;background:#ff3b5c;color:#ffd1e1;font:700 .7rem/18px Nunito;font-style:normal;padding:0 5px}
+#np{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(78px + env(safe-area-inset-bottom));z-index:15;background:var(--acc);color:#ffd1e1;border:0;border-radius:20px;padding:10px 16px;font:700 .95rem Nunito;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}
+#dp{flex-wrap:wrap;gap:8px}
+#dcu{flex:none;width:34px;height:34px;padding:0;border-radius:50%;border:2px solid var(--line);background:none;cursor:pointer}
+#tt{position:fixed;top:calc(14px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:25;background:var(--acc);color:#ffd1e1;border-radius:20px;padding:10px 18px;font:700 1rem Nunito;box-shadow:0 4px 14px rgba(0,0,0,.35);white-space:nowrap;cursor:pointer}
+#think,#beat,#jmp{font-size:1.1rem;padding:14px 22px;margin-top:14px}
+.bn{position:fixed;left:50%;bottom:0;font-size:96px;line-height:1;z-index:44;pointer-events:none;animation:hopin 2.8s both;filter:drop-shadow(0 8px 8px rgba(0,0,0,.35))}
+.bn.sm{font-size:56px;animation-duration:2.2s}
+@keyframes hopin{0%{transform:translate(-50%,110%) scale(1,1);opacity:0}12%{opacity:1}38%{transform:translate(-50%,-46vh) scale(.9,1.15)}58%{transform:translate(-50%,-22vh) scale(1,1)}64%{transform:translate(-50%,-22vh) scale(1.25,.78)}74%{transform:translate(-50%,-30vh) scale(.92,1.1)}84%{transform:translate(-50%,-22vh) scale(1.15,.86)}92%{transform:translate(-50%,-22vh) scale(1,1);opacity:1}100%{transform:translate(-50%,-22vh) scale(1,1);opacity:0}}
+.bh{position:fixed;left:50%;bottom:22vh;font-size:26px;z-index:44;pointer-events:none;animation:bhp 1.3s ease-out forwards}
+@keyframes bhp{0%{transform:translate(-50%,0) scale(.4);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),var(--dy)) scale(1.2);opacity:0}}
+.jt{position:fixed;top:16px;left:50%;width:max-content;transform:translateX(-50%);z-index:50;background:#ffd1e1;color:#3a0a26;font-weight:800;padding:12px 20px;border-radius:999px;box-shadow:0 10px 28px rgba(0,0,0,.4);animation:toastt .42s cubic-bezier(.2,.8,.2,1);max-width:92vw;text-align:center}
+.kf{position:fixed;bottom:0;z-index:40;pointer-events:none;animation:kfly 3s ease-in forwards}
+@keyframes kfly{0%{transform:translateY(0) rotate(-10deg);opacity:0}10%{opacity:1}100%{transform:translateY(-110vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.kf{animation-duration:1s}}
+@keyframes lub{0%,100%{transform:scale(1)}12%{transform:scale(1.24)}26%{transform:scale(1)}40%{transform:scale(1.15)}56%{transform:scale(1)}}
+.dm{background:none;border:0;color:inherit;opacity:.8;margin-left:8px;font:inherit;cursor:pointer;text-decoration:underline}
+.m small{display:block;font-size:.72rem;opacity:.75;margin-top:2px}
+#fm{display:flex;gap:8px;padding:10px 14px}
+input{flex:1;min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.14);color:#ffd1e1;font:1rem Nunito}
+input::placeholder{color:var(--mut)}
+#gate{position:fixed;inset:0;z-index:30;background:linear-gradient(165deg,var(--g1),var(--g2) 55%,var(--g3));display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;padding:28px;text-align:center}
+#gate input{flex:none;width:100%;max-width:280px;text-align:center;font-size:1.4rem;letter-spacing:.3em}
+#g1,#g2{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
+#gate.neutral{background:#000;color:#ddd}
+#gate.neutral .nh{font:600 1.4rem Nunito,sans-serif;color:#ddd}
+#gate.neutral .btn{background:#222;color:#ddd;border:1px solid #333}
+#gate.neutral input{background:#111;color:#fff;border:1px solid #333;letter-spacing:.3em}
+#gate.neutral #err{color:#ff6b6b}
+#err{color:#ffd1d1;min-height:1.3em}
+.cb div.lt{background:#eaf1f5}.cb div.dk{background:#6c9bb3}
+.cb div.lm.lt{background:#f6e7a1}.cb div.lm.dk{background:#cdb865}
+.cb div.sel{background:#ffd54a!important}
+.cb div.ck{background:#f4a29b!important}
+.cb div.pw{color:#fff;text-shadow:-1px -1px 0 #1b2733,1px -1px 0 #1b2733,-1px 1px 0 #1b2733,1px 1px 0 #1b2733,0 3px 4px rgba(0,0,0,.35)}
+.cb div.pb{color:#1a232d;text-shadow:-1px -1px 0 #f2f8fb,1px -1px 0 #f2f8fb,-1px 1px 0 #f2f8fb,1px 1px 0 #f2f8fb,0 3px 4px rgba(0,0,0,.3)}
+.cb div.mv::after{content:"";position:absolute;width:26%;height:26%;border-radius:50%;background:rgba(18,40,56,.55)}
+.cb div.cp::after{content:"";position:absolute;inset:5%;border:5px solid #e8534a;border-radius:50%}
+.bl{margin:10px 0 2px;font-weight:700;color:var(--mut)}
+#t-game{padding-left:6px;padding-right:6px}
+.cb{display:grid;grid-template-columns:repeat(5,1fr);width:min(100%,680px,max(300px,calc(100dvh - 340px)));margin:0 auto;border-radius:18px;overflow:hidden;border:6px solid #1f3b50;background:#1f3b50;box-shadow:0 12px 30px rgba(0,0,0,.45);touch-action:manipulation;container-type:inline-size}
+.cb div{aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;font-size:calc(100cqw / 5 * .62);line-height:1;cursor:pointer;user-select:none;font-family:"Segoe UI Symbol","Noto Sans Symbols2","DejaVu Sans",sans-serif}
+.cb div.ck{animation:ckp 1s ease-in-out infinite}
+@keyframes ckp{50%{background:#e8665c}}
+.cb .pc{display:inline-block;position:relative;z-index:2;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+.bg{display:grid;grid-template-columns:repeat(8,1fr);gap:0;background:#0b3d5c;padding:5px;border-radius:18px;width:min(100%,600px,max(300px,calc(100dvh - 430px)));margin:4px auto 0;touch-action:manipulation;container-type:inline-size;box-shadow:0 10px 26px rgba(0,0,0,.4);overflow:hidden}
+.bg.s{width:min(62%,300px)}
+.bg div{aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#3d9fd8,#2a82b9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:calc(100cqw / 8 * .5);line-height:1;user-select:none}
+.bg div.tp{cursor:pointer;background:linear-gradient(160deg,#52b2e8,#3593cb)}
+.bg div.tp:hover{filter:brightness(1.15)}
+.bg div.sh{background:radial-gradient(circle at 50% 50%,#e3eef6 0 11%,transparent 12%),linear-gradient(180deg,#b6c8d6,#6c8193);box-shadow:inset 0 0 0 1px #566a7a}
+.bg div.sh.el,.bg div.hi.el,.bg div.sk.el{border-top-left-radius:55%;border-bottom-left-radius:55%}
+.bg div.sh.er,.bg div.hi.er,.bg div.sk.er{border-top-right-radius:55%;border-bottom-right-radius:55%}
+.bg div.sh.eu,.bg div.hi.eu,.bg div.sk.eu{border-top-left-radius:55%;border-top-right-radius:55%}
+.bg div.sh.ed,.bg div.hi.ed,.bg div.sk.ed{border-bottom-left-radius:55%;border-bottom-right-radius:55%}
+.bg div.np{animation:pop .45s ease-out}
+.bg div.mi::before{content:"";width:26%;height:26%;border-radius:50%;background:#eaf7ff;box-shadow:0 0 0 3px rgba(234,247,255,.25)}
+.bg div.mi.ls::after{content:"";position:absolute;inset:18%;border:3px solid #eaf7ff;border-radius:50%;animation:ripple .9s ease-out}
+.bg div.hi{background:linear-gradient(160deg,#ef6a5b,#c93a3a)}
+.bg div.hi::before{content:"💥"}
+.bg div.sk{background:linear-gradient(160deg,#5b1d1d,#3a0f0f)}
+.bg div.sk::before{content:"🔥"}
+.bg div.ls.hi,.bg div.ls.sk{animation:boom .6s ease-out;z-index:2}
+.bg div.ls{box-shadow:inset 0 0 0 3px #ffe27a}
+.bg div.aim{box-shadow:inset 0 0 0 3px #ffe27a;animation:pulse .7s ease-in-out infinite}
+.bg div.aim::before{content:"🎯"}
+@keyframes ripple{0%{transform:scale(.2);opacity:1}100%{transform:scale(2.2);opacity:0}}
+@keyframes boom{0%{transform:scale(.4);filter:brightness(3)}45%{transform:scale(1.4)}100%{transform:scale(1);filter:none}}
+@keyframes pop{0%{transform:scale(.5)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes pulse{50%{filter:brightness(1.4)}}
+.tray{display:flex;gap:8px;justify-content:center;margin:6px 0 8px;flex-wrap:wrap}
+.sp{display:flex;gap:2px;padding:9px;border-radius:12px;border:2px solid var(--line);background:var(--g2);cursor:pointer}
+.sp i{width:18px;height:18px;border-radius:4px;background:linear-gradient(#b6c8d6,#6c8193);display:block}
+.sp.sel{border-color:#ffe27a;box-shadow:0 0 0 3px rgba(255,226,122,.35)}
+.sp.done{opacity:.5}
+.bctl{display:flex;gap:8px;justify-content:center;margin-bottom:6px;flex-wrap:wrap}
+.btn:disabled{opacity:.45;cursor:default}
+.cal{max-width:620px;margin:0 auto;text-align:left;padding-bottom:90px}
+.calh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;text-align:center}
+.calh h2{font-size:1.55rem;margin:0}
+.cn{width:48px;height:48px;border-radius:16px;border:1px solid var(--line);background:var(--g2);color:var(--ink);font-size:1.8rem;cursor:pointer;line-height:1;transition:transform .15s,background .2s}
+.cn:active{transform:scale(.9)}
+.ghostb{background:none;border:0;color:var(--acc);font:700 .9rem Nunito;cursor:pointer;padding:2px 8px}
+.cnp{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:linear-gradient(135deg,var(--g2),var(--g3));border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin:0 0 12px;color:var(--ink);cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.25);font:inherit}
+.cnp:empty{display:none}
+.cnp .ni{font-size:2.1rem;animation:float 3s ease-in-out infinite}
+.nb2 b{display:block;font-size:1.08rem}
+.nb2 small{display:block;color:var(--mut)}
+.cwk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;color:var(--mut);font-weight:700;font-size:.8rem;margin-bottom:4px}
+.cgr{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--g2);padding:8px;border-radius:20px;box-shadow:0 10px 26px rgba(0,0,0,.3);touch-action:pan-y}
+.cc{aspect-ratio:1;border:0;border-radius:12px;background:rgba(255,255,255,.09);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;font:700 1rem Nunito;min-width:0;transition:transform .15s,background .2s}
+.cc:active{transform:scale(.9)}
+.cc.e{background:none;cursor:default}
+.cc b{font-size:.95rem;line-height:1.1}
+.cc.we b{opacity:.8}
+.cc .ce{position:relative;font-size:.9rem;line-height:1;height:1em}
+.cc .ce sup{position:absolute;top:-5px;right:-11px;font-size:.55rem;color:var(--mut)}
+.cc .cdots{display:flex;gap:3px;height:6px;align-items:center}
+.cc.td{outline:2px solid var(--acc);outline-offset:-2px}
+.cc.sl{background:#ffd1e1;color:#3a0a26}
+.cc.sl b{opacity:1}
+.cc.sl .ce sup{color:#3a0a26}
+.cgr.anim .cc{animation:cellin .35s both;animation-delay:calc(var(--i,0) * 9ms)}
+@keyframes cellin{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.cc i,.cleg i{display:inline-block;width:6px;height:6px;border-radius:50%}
+.dm{background:#ff5f9a}.dp{background:#ffc94d}.ds{background:#7fe0ff}
+.cleg{display:flex;gap:14px;justify-content:center;margin:2px 0 8px;color:var(--mut);font-size:.85rem}
+.cleg i{margin-right:5px}
+.csum{margin:10px 2px 4px;color:var(--mut);font-size:.9rem;text-align:center}
+.cdaybox{margin-top:6px}
+.cdh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cdh h3{margin:8px 0;font-size:1.15rem;color:var(--ink)}
+.cdh .btn{margin:0;padding:8px 14px;min-height:40px;font-size:.95rem}
+.cev{display:flex;gap:10px;align-items:flex-start;background:var(--g2);border-left:5px solid #ff5f9a;border-radius:14px;padding:10px 12px;margin:8px 0;box-shadow:0 4px 12px rgba(0,0,0,.2);animation:evin .38s both;animation-delay:calc(var(--i,0) * 60ms);transition:transform .15s}
+.cev.p{border-color:#ffc94d}.cev.s{border-color:#7fe0ff}
+.cev.tap{cursor:pointer}.cev.tap:active{transform:scale(.98)}
+.cev .ci{font-size:1.6rem;line-height:1.1}
+@keyframes evin{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+.cbody{flex:1;min-width:0;overflow-wrap:anywhere}
+.cbody b{display:block}
+.cbody small{display:block;color:var(--mut)}
+.cbody .cwhen{color:var(--acc);font-weight:700}
+.cmeta{opacity:.8}
+.cemp{text-align:center;padding:14px;background:rgba(255,255,255,.06);border:1px dashed var(--line);border-radius:16px;margin:8px 0}
+.cemo{font-size:2rem;display:block;animation:float 3s ease-in-out infinite}
+.chint{display:block;margin:6px 0;color:var(--mut);text-align:center;opacity:.8}
+.chd{margin:20px 0 6px}
+#cfab{position:fixed;right:16px;bottom:calc(88px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;border:0;background:var(--acc);color:#ffd1e1;font-size:2rem;line-height:1;cursor:pointer;z-index:12;animation:fab 2.6s ease-in-out infinite;transition:transform .15s}
+#cfab:active{transform:scale(.9)}
+@keyframes fab{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.4),0 0 0 0 rgba(95,214,224,.55)}50%{box-shadow:0 8px 22px rgba(0,0,0,.4),0 0 0 14px rgba(95,214,224,0)}}
+#csheet{position:fixed;inset:0;z-index:45;display:flex;align-items:flex-end;justify-content:center}
+.sbk{position:absolute;inset:0;background:rgba(0,0,0,.6);animation:fadein .25s}
+.shp{position:relative;background:var(--g1);border-radius:26px 26px 0 0;border:1px solid var(--line);border-bottom:0;padding:10px 16px calc(18px + env(safe-area-inset-bottom));width:100%;max-width:620px;max-height:90dvh;overflow:auto;text-align:left;animation:sheetup .32s cubic-bezier(.2,.8,.2,1)}
+.shp h3{margin:6px 0 10px;color:var(--ink);font-size:1.2rem}
+.shp input:not([type=checkbox]){width:100%;margin:6px 0;padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:#ffd1e1;font:1rem Nunito}
+.shp input::placeholder{color:var(--mut)}
+.sgrab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 6px}
+#csheet.out .shp{animation:sheetdn .22s ease-in forwards}
+#csheet.out .sbk{animation:fadeout .22s forwards}
+@keyframes sheetup{from{transform:translateY(100%)}}
+@keyframes sheetdn{to{transform:translateY(100%)}}
+@keyframes fadein{from{opacity:0}}
+@keyframes fadeout{to{opacity:0}}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--ink);font:700 1rem Nunito;cursor:pointer;transition:transform .15s,background .2s}
+.seg button.on{background:var(--acc)}
+.icons{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.icons button{width:44px;height:44px;border-radius:12px;border:2px solid transparent;background:rgba(255,255,255,.1);font-size:1.4rem;cursor:pointer;transition:transform .15s,background .2s}
+.icons button.on{border-color:#ffd1e1;background:rgba(255,209,225,.2);transform:scale(1.12)}
+.lbl{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0;color:var(--ink);font-weight:700}
+.shp .lbl input{width:auto;flex:1;max-width:210px;color-scheme:dark;margin:0}
+.shp .chk{justify-content:flex-start}
+.sbtn{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.sbtn .btn{margin:0;flex:1}
+
+/* ---------- Hareket ---------- */
+@keyframes tabin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes drop{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes glow{50%{text-shadow:0 0 18px rgba(255,209,225,.55)}}
+@keyframes bob{0%{transform:translateY(8px) scale(.7)}60%{transform:translateY(-5px) scale(1.25)}100%{transform:none}}
+@keyframes rise2{from{opacity:0;transform:translateY(18px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes wig{0%,84%,100%{transform:none}88%{transform:rotate(-12deg) scale(1.12)}92%{transform:rotate(12deg) scale(1.12)}96%{transform:rotate(-6deg)}}
+@keyframes flip{from{transform:perspective(500px) rotateY(90deg)}to{transform:none}}
+@keyframes msgin{from{opacity:0;transform:translateX(-20px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes msgin2{from{opacity:0;transform:translateX(20px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes pdot{50%{box-shadow:0 0 14px #4cd964}}
+@keyframes badge{50%{transform:scale(1.2)}}
+@keyframes toastb{from{opacity:0;transform:translate(-50%,18px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes toastt{from{opacity:0;transform:translate(-50%,-18px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes pop2{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+@keyframes tk{0%{transform:translateY(-8px) scale(1.2);opacity:.4}100%{transform:none;opacity:1}}
+@keyframes float{50%{transform:translateY(-6px)}}
+@keyframes softp{0%,100%{box-shadow:0 0 0 0 rgba(95,214,224,.55)}50%{box-shadow:0 0 0 10px rgba(95,214,224,0)}}
+.tab.on>:not(#csheet):not(#cfab){animation:tabin .4s cubic-bezier(.2,.8,.2,1)}
+header{animation:drop .6s cubic-bezier(.2,.8,.2,1)}
+header h1{animation:glow 4s ease-in-out infinite}
+nav button{transition:background .25s,transform .15s,color .25s}
+nav button:active{transform:scale(.9)}
+nav button.on b{animation:bob .55s cubic-bezier(.3,1.5,.5,1)}
+.btn,.gm button,.gift,.cd,.cell,.thm button,.row .cell{transition:transform .15s,filter .2s,background .25s}
+.btn:active,.gm button:active,.gift:active,.cd:active,.cell:active,.thm button:active{transform:scale(.95)}
+@media(hover:hover){.btn:hover,.gm button:hover,.gift:hover,.cd:hover{filter:brightness(1.12);transform:translateY(-2px)}}
+.gm button{animation:rise2 .5s both}
+.gift{animation:rise2 .55s both}
+.gift:not(.open) span{animation:wig 4.2s ease-in-out infinite}
+.gift.open{animation:flip .5s}
+.cd.ok2,.cell:not(:empty){animation:pop .35s ease-out}
+.box div{transition:transform .2s}
+.box div:hover{transform:translateY(-3px)}
+.m{animation:msgin .34s cubic-bezier(.2,.8,.2,1)}
+.m.me{animation-name:msgin2}
+.pd.on{animation:pdot 2s ease-in-out infinite}
+#nb{animation:badge 1.2s ease-in-out infinite}
+#np{animation:toastb .42s cubic-bezier(.2,.8,.2,1)}
+#tt{animation:toastt .42s cubic-bezier(.2,.8,.2,1)}
+#set{animation:fadein .25s}
+#set .card{animation:pop2 .35s cubic-bezier(.2,.8,.2,1)}
+.tk{animation:tk .35s ease-out}
+#cake{animation:float 5s ease-in-out infinite}
+#think,#beat{animation:softp 2.8s ease-in-out infinite}
+.gm button:nth-child(1){animation-delay:0.03s}.gm button:nth-child(2){animation-delay:0.06s}.gm button:nth-child(3){animation-delay:0.09s}.gm button:nth-child(4){animation-delay:0.12s}.gm button:nth-child(5){animation-delay:0.15s}.gm button:nth-child(6){animation-delay:0.18s}.gm button:nth-child(7){animation-delay:0.21s}.gm button:nth-child(8){animation-delay:0.24s}.gm button:nth-child(9){animation-delay:0.27s}.gm button:nth-child(10){animation-delay:0.30s}.gm button:nth-child(11){animation-delay:0.33s}.gift:nth-child(1){animation-delay:0.06s}.gift:nth-child(1) span{animation-delay:0.7s}.gift:nth-child(2){animation-delay:0.12s}.gift:nth-child(2) span{animation-delay:1.4s}.gift:nth-child(3){animation-delay:0.18s}.gift:nth-child(3) span{animation-delay:2.1s}.gift:nth-child(4){animation-delay:0.24s}.gift:nth-child(4) span{animation-delay:2.8s}.gift:nth-child(5){animation-delay:0.30s}.gift:nth-child(5) span{animation-delay:3.5s}.gift:nth-child(6){animation-delay:0.36s}.gift:nth-child(6) span{animation-delay:4.2s}#gbody>:nth-child(1){animation-delay:0.06s}#gbody>:nth-child(2){animation-delay:0.12s}#gbody>:nth-child(3){animation-delay:0.18s}#gbody>:nth-child(4){animation-delay:0.24s}#gbody>:nth-child(5){animation-delay:0.30s}#gbody>:nth-child(6){animation-delay:0.36s}#gbody>:nth-child(7){animation-delay:0.42s}#gbody>:nth-child(8){animation-delay:0.48s}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+#cake .k1{fill:var(--k1)}#cake .k2{fill:var(--k2)}#cake .k3{fill:var(--k3)}#cake .k4{stroke:var(--k4)}#cake .dot{fill:var(--k4)}
+#cake,#cake.fl-cilek{--k1:#f48fb1;--k2:#f8bbd0;--k3:#fff0f5;--k4:#ec407a}
+#cake.fl-muz{--k1:#f2c94c;--k2:#f8de83;--k3:#fff7d6;--k4:#d9962b}
+#cake.fl-cik{--k1:#7b4a2f;--k2:#9a6340;--k3:#5a3322;--k4:#3a1f14}
+#cake.fl-muz .dot{r:7px;fill:#fff3b0;stroke:#d9962b;stroke-width:2.5}
+#cake .mz{display:none}#cake.fl-muz .mz{display:block}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}
+.chips button{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--g2);color:var(--ink);font:700 .9rem Nunito;cursor:pointer;transition:transform .15s,background .2s}
+.chips button:active{transform:scale(.94)}
+.chips button.on{background:var(--acc)}
+.chips span{align-self:center;color:var(--mut);font-weight:700}
+
+/* ---------- Pasta ve mum animasyonları ---------- */
+.L1,.L2,.L3{transform-box:fill-box;transform-origin:50% 100%}
+#cake.in .L1{animation:drop3 .7s cubic-bezier(.3,1.4,.5,1) both}
+#cake.in .L2{animation:drop3 .7s cubic-bezier(.3,1.4,.5,1) .18s both}
+#cake.in .L3{animation:drop3 .7s cubic-bezier(.3,1.4,.5,1) .36s both}
+@keyframes drop3{0%{transform:translateY(-150px);opacity:0}18%{opacity:1}62%{transform:translateY(0) scale(1.07,.9)}82%{transform:scale(.98,1.03)}100%{transform:none}}
+#cake .k4{stroke-dasharray:140}
+#cake.in .k4{animation:dripdraw .7s ease-out .7s both}
+@keyframes dripdraw{from{stroke-dashoffset:140}to{stroke-dashoffset:0}}
+#cn>g{cursor:pointer;transform-box:fill-box;transform-origin:50% 100%}
+#cake.in #cn>g{animation:candlein .45s cubic-bezier(.3,1.5,.5,1) calc(.75s + var(--i) * .1s) both}
+@keyframes candlein{from{transform:scaleY(0);opacity:0}to{transform:none;opacity:1}}
+.fl{transform-box:fill-box;transform-origin:50% 100%}
+#cake.in .fl{animation:ignite .5s cubic-bezier(.3,1.6,.5,1) calc(1.2s + var(--i) * .1s) both,fl2 calc(.32s + var(--r) * .28s) ease-in-out calc(1.7s + var(--i) * .1s) infinite alternate}
+@keyframes ignite{from{transform:scale(0);opacity:0;filter:brightness(3)}to{transform:scale(1);opacity:1;filter:none}}
+@keyframes fl2{0%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(.9,1.12) rotate(2deg) skewX(3deg)}100%{transform:scale(1.05,.94) rotate(4deg) skewX(-3deg)}}
+.gl{transform-box:fill-box;transform-origin:center}
+#cake.in .gl{animation:glowin .5s ease-out calc(1.2s + var(--i) * .1s) both,glowp calc(1s + var(--r) * .6s) ease-in-out calc(1.7s + var(--i) * .1s) infinite alternate}
+@keyframes glowin{from{opacity:0;transform:scale(.2)}to{opacity:.8;transform:scale(1)}}
+@keyframes glowp{from{opacity:.6;transform:scale(.9)}to{opacity:1;transform:scale(1.12)}}
+#cn .em{opacity:0}
+#cn .sm{opacity:0;fill:none;stroke:#e3e3ee;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:70;stroke-dashoffset:70;transform-box:fill-box}
+#cake.in #cn g.off .fl{animation:snuff .28s ease-in forwards}
+#cake.in #cn g.off .gl{animation:glowoff .3s ease-in forwards}
+#cake.in #cn g.off .em{animation:ember 1.5s ease-out}
+#cake.in #cn g.off .sm{animation:smoke 1.8s ease-out}
+@keyframes snuff{to{transform:scale(.1,.15) translateY(4px) rotate(22deg);opacity:0}}
+@keyframes glowoff{to{opacity:0;transform:scale(.2)}}
+@keyframes ember{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.3)}}
+@keyframes smoke{0%{opacity:.85;stroke-dashoffset:70;transform:translateY(0)}55%{opacity:.6;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0;transform:translateY(-16px)}}
+#bites circle{animation:bgrow .28s ease-out}
+@keyframes bgrow{from{r:0}}
+.spk{animation:twk 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center;pointer-events:none}
+@keyframes twk{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(25deg)}}
+.spkl{position:fixed;z-index:30;pointer-events:none}
+#lh{animation:pop .5s ease-out}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<canvas id="cf"></canvas>
+<div id="bl"></div>
+<button id="np" hidden></button>
+<div id="csheet" hidden>
+  <div class="sbk" id="csbk"></div>
+  <div class="shp">
+    <div class="sgrab"></div>
+    <h3 id="csht">Yeni kayıt</h3>
+    <div class="seg"><button id="ckm">💗 Anı</button><button id="ckp">🗓️ Plan</button></div>
+    <div class="icons" id="cico"></div>
+    <input id="cti" maxlength="80" placeholder="Ne yaşadık / ne yapacağız?" autocomplete="off">
+    <input id="cno" maxlength="200" placeholder="Not (isteğe bağlı)" autocomplete="off">
+    <label class="lbl">Tarih <input type="date" id="cdate"></label>
+    <label class="chk"><input type="checkbox" id="cyr"> Her yıl tekrarla 🔁</label>
+    <div class="sbtn"><button class="btn" id="csave">Kaydet</button><button class="btn alt" id="ccan">Vazgeç</button><button class="btn alt" id="cdel" hidden>🗑 Sil</button></div>
+  </div>
+</div>
+<div id="tt" hidden></div>
+<div id="set" hidden><div class="card">
+  <h2>Ayarlar ⚙️</h2><h3>Arayüz rengi</h3><div id="thm" class="thm"></div>
+  <label class="chk"><input type="checkbox" id="hrt" checked> Arka plandaki kalpler</label>
+  <button class="btn" id="sx">Tamam</button>
+</div></div>
+
+<div id="gate" class="neutral">
+  <div id="g1">
+    <h1 class="nh">Giriş</h1>
+    <input id="pw" type="password" autocomplete="off" placeholder="Kod">
+    <div id="err"></div>
+    <button class="btn" id="go">Giriş</button>
+  </div>
+  <div id="g2" hidden>
+    <div style="font-size:3rem">💞</div>
+    <h1>Sevgilim, hoş geldin</h1>
+    <p>Kim olduğunu seç aşkım</p>
+    <div><button class="btn who" data-n="İrem">Ben İrem</button><button class="btn who" data-n="Hamza">Ben Hamza</button></div>
+  </div>
+</div>
+
+<header><h1>İrem 💞 Hamza</h1><div id="pres"></div><button id="gear" aria-label="Ayarlar">⚙️</button></header>
+<main>
+  <section class="tab on" id="t-count">
+    <h2>Sevgilim, birlikte geçen zamanımız</h2>
+    <p>6 Temmuz 2026'dan beri</p>
+    <div class="big" id="dd">0</div><p style="margin-top:-6px">gündür</p>
+    <div class="box">
+      <div><b id="d1">0</b><small>gün</small></div><div><b id="hh">0</b><small>saat</small></div>
+      <div><b id="mm">0</b><small>dakika</small></div><div><b id="ss">0</b><small>saniye</small></div>
+    </div>
+    <p>Her anım seninle güzel. Seni çok seviyorum aşkım ❤️</p>
+    <button class="btn" id="think">💭 Seni düşünüyorum</button>
+    <p id="thk"></p>
+    <button class="btn" id="beat">💋 Öpücük gönder</button>
+    <button class="btn" id="jmp">🐰 Zıpla</button>
+  </section>
+
+  <section class="tab" id="t-cal">
+    <div class="cal">
+      <div class="calh"><button class="cn" id="cprev" aria-label="Önceki ay">‹</button><div><h2 id="cmon"></h2><button class="ghostb" id="ctoday">Bugüne git</button></div><button class="cn" id="cnext" aria-label="Sonraki ay">›</button></div>
+      <button class="cnp" id="cnextp"></button>
+      <div class="cwk"><span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span></div>
+      <div class="cgr" id="cgr"></div>
+      <div class="csum" id="csum"></div>
+      <div class="cleg"><span><i class="dm"></i>Anı</span><span><i class="dp"></i>Plan</span><span><i class="ds"></i>Özel gün</span></div>
+      <div class="cdaybox" id="cdaybox">
+        <div class="cdh"><h3 id="cdt"></h3><button class="btn" id="cadd">➕ Ekle</button></div>
+        <div id="cdl"></div>
+      </div>
+      <h3 class="chd">⏳ Yaklaşan planlarımız</h3><div id="cup"></div>
+      <h3 class="chd">💗 Son anılarımız</h3><div id="cmem"></div>
+    </div>
+    <button id="cfab" aria-label="Takvime ekle">＋</button>
+  </section>
+  <section class="tab" id="t-bday">
+    <h2 id="bt2">İrem'in doğum günü 🎂</h2>
+    <p id="bcd"></p>
+    <svg id="cake" class="in" viewBox="0 0 240 230" aria-label="Doğum günü pastası">
+      <defs>
+        <mask id="bm" maskUnits="userSpaceOnUse" x="-20" y="-140" width="280" height="380"><rect x="-20" y="-140" width="280" height="380" fill="#fff"/><g id="bites" fill="#000"></g></mask>
+        <radialGradient id="glw"><stop offset="0" stop-color="#ffd54a" stop-opacity=".65"/><stop offset="1" stop-color="#ffd54a" stop-opacity="0"/></radialGradient>
+      </defs>
+      <ellipse cx="120" cy="219" rx="114" ry="9" fill="rgba(255,255,255,.22)"/>
+      <g id="cb" mask="url(#bm)">
+        <g class="L1"><rect class="k1" x="20" y="170" width="200" height="45" rx="10" fill="#f48fb1"/><text class="mz" x="22" y="210" font-size="30" fill="#fff">🍌</text><text class="mz" x="176" y="210" font-size="30" fill="#fff">🍌</text><text class="mz" x="99" y="199" font-size="26" fill="#fff">🍌</text></g>
+        <g class="L2"><rect class="k2" x="40" y="125" width="160" height="50" rx="10" fill="#f8bbd0"/><circle class="dot" cx="60" cy="150" r="5" fill="#ec407a"/><circle class="dot" cx="100" cy="150" r="5" fill="#ec407a"/><circle class="dot" cx="140" cy="150" r="5" fill="#ec407a"/><circle class="dot" cx="180" cy="150" r="5" fill="#ec407a"/></g>
+        <g class="L3"><rect class="k3" x="60" y="92" width="120" height="38" rx="10" fill="#fff0f5"/><path class="k4" d="M60 108q15 18 30 0t30 0 30 0 30 0" fill="none" stroke="#ec407a" stroke-width="6" stroke-linecap="round"/></g>
+      </g>
+      <g id="crumbs"></g>
+      <text id="lh" x="120" y="214" text-anchor="middle" font-size="22" fill="#fff" style="display:none">💗</text>
+      <g id="cn"></g>
+      <text class="spk" x="24" y="96" font-size="15" fill="#fff">✨</text>
+      <text class="spk" x="204" y="70" font-size="13" fill="#fff" style="animation-delay:.9s">✨</text>
+      <text class="spk" x="196" y="160" font-size="16" fill="#fff" style="animation-delay:1.7s">✨</text>
+    </svg>
+    <p id="bmsg">Mumlara dokun, sonra pastayı ye sevgilim 🕯️🍰</p>
+    <div class="chips" id="bfl"><span>Pasta:</span><button data-f="muz">🍌 Muzlu</button><button data-f="cilek">🍓 Çilekli</button><button data-f="cik">🍫 Çikolatalı</button></div>
+    <div><button class="btn" id="relight">Yeni pasta</button><button class="btn alt" id="song">🎵 Şarkı</button><button class="btn alt" id="conf">Kutlama 🎉</button></div>
+    <h3 id="bgt">Sana hediyelerim var aşkım 🎁</h3>
+    <div class="gifts" id="gifts"></div>
+  </section>
+
+  <section class="tab" id="t-game">
+    <h2>Hadi oynayalım aşkım 🎮</h2>
+    <div id="gmenu">
+      <h3>Çevrimdışı (tek kişilik)</h3>
+      <div class="gm"><button data-g="mem"><span>🃏</span>Hafıza</button><button data-g="flap"><span>💗</span>Uçan Kalp</button><button data-g="pk"><span>🥒</span>Turşu Kesme</button><button data-g="snake"><span>🐌</span>Sümüklü Böcek</button></div>
+      <h3>Çevrimiçi (ikimiz birlikte)</h3>
+      <div class="gm"><button data-g="xox"><span>❌⭕</span>XOX</button><button data-g="rps"><span>✂️</span>Taş Kağıt Makas</button><button data-g="pong"><span>🏓</span>Pong Maçı</button><button data-g="mchess"><span>♟️</span>Mini Satranç</button><button class="wide" data-g="battle"><span>🚢</span>Amiral Battı</button><button class="wide" data-g="paint"><span>🎨</span>Ortak Çizim</button><button class="wide" data-g="flirt"><span>💋</span>Yakınlık Kartları</button></div>
+    </div>
+    <button class="btn alt" id="gback" hidden>← Oyunlar</button>
+    <div id="gbody"></div>
+  </section>
+
+  <section class="tab" id="t-chat">
+    <div class="ch"><button id="clr">🗑 Tüm sohbeti herkesten sil</button></div>
+    <div id="msgs"></div>
+    <div id="fm"><input id="mi" placeholder="Aşkım, bir şey yaz…" autocomplete="off" maxlength="500"><button class="btn" id="sd" style="margin:0">Gönder</button></div>
+  </section>
+</main>
+<nav>
+  <button class="on" data-t="count"><b>💗</b>Sayaç</button>
+  <button data-t="cal"><b>📅</b>Takvim</button>
+  <button data-t="bday"><b>🎂</b>Doğum günü</button>
+  <button data-t="game"><b>🎮</b>Oyunlar</button>
+  <button data-t="chat"><b>💌</b>Mesajlar<i id="nb" hidden></i></button>
+</nav>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, onChildAdded, onChildRemoved, query, limitToLast, push }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDhzCr4qFE1yfzTPGPzSYzlWX0hWfSkWPI",
+  authDomain: "biziz-1106d.firebaseapp.com",
+  databaseURL: "https://biziz-1106d-default-rtdb.firebaseio.com",
+  projectId: "biziz-1106d",
+  storageBucket: "biziz-1106d.firebasestorage.app",
+  messagingSenderId: "496239088906",
+  appId: "1:496239088906:web:a2fc00b78db43371a196f3"
+};
+const db = initializeApp(firebaseConfig) && getDatabase();
+let R = "";
+const NODB = "<p>Bağlantı kurulamadı.</p>";
+const cyrb53 = (s, seed = 0) => { let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0, c; i < s.length; i++) { c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0); };
+const roomOf = c => "rooms/r" + cyrb53(c + "|ih").toString(36) + cyrb53(c, 7).toString(36);
+const $ = id => document.getElementById(id), q = s => document.querySelectorAll(s);
+const SS = { get(k){try{return sessionStorage.getItem(k)}catch(e){return null}}, set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}} };
+let me = SS.get("ih_me"), started = false;
+
+const code0 = () => $("pw").value.trim().toLowerCase();
+const unlock = () => { $("gate").classList.remove("neutral"); document.body.classList.add("in"); $("g1").hidden = true; $("g2").hidden = false; };
+const CHECK = 2587472892683338;
+const tryPw = () => {
+  const c = code0();
+  if (cyrb53(c + "|ok") !== CHECK) { $("err").textContent = "Şifre yanlış."; return; }
+  R = roomOf(c); $("err").textContent = ""; SS.set("ih_code", c); unlock();
+};
+$("go").onclick = tryPw; $("pw").onkeydown = e => { if (e.key === "Enter") tryPw(); };
+q(".who").forEach(b => b.onclick = () => { me = b.dataset.n; SS.set("ih_me", me); enter(); });
+const sc0 = SS.get("ih_code"); if (me && sc0) { R = roomOf(sc0); enter(); }
+
+function enter(){ document.body.classList.add("in"); $("gate").hidden = true; if (!started) { started = true; setTimeout(init, 0); } }
+
+/* Konfeti */
+const cv = $("cf"), cx = cv.getContext("2d"); let P = [], run = false;
+function go(){ if (!run) { cv.width = innerWidth; cv.height = innerHeight; run = true; requestAnimationFrame(frame); } }
+function confetti(n = 150){
+  go();
+  for (let i = 0; i < n; i++) P.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:Math.random()*6+3,a:Math.random()*6,c:`hsl(${Math.random()*360},90%,65%)`});
+}
+function boom(x, y){
+  go(); const h = Math.random()*360;
+  for (let i = 0; i < 60; i++) { const a = Math.PI*2*i/60, v = Math.random()*4+2; P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:2.5,a:0,g:.05,l:60,c:`hsl(${h},100%,65%)`}); }
+}
+function fireworks(){ for (let i = 0; i < 6; i++) setTimeout(() => boom(innerWidth*(.15+Math.random()*.7), innerHeight*(.15+Math.random()*.35)), i*350); }
+function frame(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  P.forEach(p => {
+    p.vy += p.g === undefined ? .3 : p.g; p.x += p.vx; p.y += p.vy; p.a += .2;
+    if (p.l) { p.l--; cx.globalAlpha = Math.max(p.l/60, 0); }
+    cx.fillStyle = p.c; cx.save(); cx.translate(p.x,p.y); cx.rotate(p.a); cx.fillRect(-p.r,-p.r/2,p.r*2,p.r); cx.restore(); cx.globalAlpha = 1;
+  });
+  P = P.filter(p => p.y < cv.height + 20 && (p.l === undefined || p.l > 0));
+  if (P.length) requestAnimationFrame(frame); else { run = false; cx.clearRect(0,0,cv.width,cv.height); }
+}
+
+/* Turşu kesme oyunu (iki modda ortak) */
+function pickleGame(c, seed, delay, onScore, onEnd){
+  const g = c.getContext("2d"), W = 300, H = 440, DUR = 30;
+  let a = seed >>> 0;
+  const rnd = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const sp = [];
+  for (let t = .6; t < DUR - 1.4; t += .45 + rnd() * .5) {
+    const n = 1 + (rnd() < .3 ? 1 : 0) + (rnd() < .12 ? 1 : 0);
+    for (let k = 0; k < n; k++) sp.push({t: t + k * .12, x: 40 + rnd() * 220, vx: (rnd() - .5) * 120, vy: -(520 + rnd() * 160), b: rnd() < .16, s: 0});
+  }
+  let sc = 0, down = false, trail = [], last = null, done = false, raf;
+  const t0 = performance.now() + delay * 1000, el = () => (performance.now() - t0) / 1000;
+  const pos = (o, e) => { const k = e - o.t; return {x: o.x + o.vx * k, y: H + 30 + o.vy * k + 350 * k * k}; };
+  const P = e => { const r = c.getBoundingClientRect(); return {x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height, t: performance.now()}; };
+  const dist = (p, q, r) => { const dx = r.x - q.x, dy = r.y - q.y, l = dx*dx + dy*dy; let u = l ? ((p.x - q.x) * dx + (p.y - q.y) * dy) / l : 0; u = Math.max(0, Math.min(1, u)); return Math.hypot(p.x - (q.x + u * dx), p.y - (q.y + u * dy)); };
+  c.onpointerdown = e => { down = true; last = P(e); trail = [last]; };
+  c.onpointermove = e => {
+    if (!down) return; const p = P(e), e0 = el(); trail.push(p);
+    if (last && e0 >= 0 && e0 < DUR) sp.forEach(o => {
+      if (o.s || e0 < o.t) return; const q = pos(o, e0);
+      if (dist(q, last, p) < 26) { o.s = e0; o.sx = q.x; o.sy = q.y; sc = o.b ? Math.max(0, sc - 3) : sc + 1; onScore(sc); }
+    });
+    last = p;
+  };
+  c.onpointerup = c.onpointercancel = c.onpointerleave = () => { down = false; last = null; };
+  g.textAlign = "center"; g.textBaseline = "middle";
+  const loop = () => {
+    if (done) return; const e = el();
+    if (e >= DUR) { done = true; g.clearRect(0, 0, W, H); onEnd(sc); return; }
+    g.clearRect(0, 0, W, H); g.font = "44px serif";
+    sp.forEach(o => {
+      if (e < o.t) return; const ch = o.b ? "🌶️" : "🥒";
+      if (o.s) {
+        const d = e - o.s; if (d > .6) return; g.globalAlpha = 1 - d / .6;
+        [-1, 1].forEach(dir => { g.save(); g.translate(o.sx + dir * d * 70, o.sy + d * d * 300); g.rotate(dir * d * 3); g.beginPath(); g.rect(dir < 0 ? -30 : 0, -30, 30, 60); g.clip(); g.fillText(ch, 0, 0); g.restore(); });
+        g.globalAlpha = 1;
+      } else { const q = pos(o, e); if (q.y < H + 60) g.fillText(ch, q.x, q.y); }
+    });
+    const now = performance.now(); trail = trail.filter(p => now - p.t < 160);
+    if (trail.length > 1) { g.strokeStyle = "#fff"; g.lineWidth = 4; g.lineCap = "round"; g.beginPath(); trail.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.stroke(); }
+    g.fillStyle = "#fff"; g.font = "700 18px Nunito, sans-serif"; g.textAlign = "left"; g.fillText("Puan " + sc, 10, 20);
+    g.textAlign = "right"; g.fillText(Math.max(0, Math.ceil(DUR - e)) + " sn", W - 10, 20); g.textAlign = "center";
+    if (e < 0) { g.font = "700 72px Fraunces, serif"; g.fillText(Math.ceil(-e), W/2, H/2); }
+    raf = requestAnimationFrame(loop);
+  };
+  loop();
+  return () => { done = true; cancelAnimationFrame(raf); };
+}
+
+/* Tema */
+const THEMES = {
+  gul: ["Gül", "#3a0a26", "#7b1f4f", "#c2456f", "#ff6f9f", "#f3b8cd", "rgba(40,5,25,.7)"],
+  lavanta: ["Lavanta", "#1f1040", "#4b2a8a", "#9a6bd6", "#c9a0ff", "#d9c6f5", "rgba(20,8,45,.7)"],
+  okyanus: ["Okyanus", "#04223a", "#0b5a7a", "#2aa6b8", "#5fd6e0", "#f3b8cd", "rgba(3,25,40,.7)"],
+  gunbatimi: ["Gün batımı", "#4a1a0a", "#b3461f", "#f08a4b", "#ffb067", "#ffd9bf", "rgba(50,15,5,.7)"],
+  orman: ["Orman", "#0b2a1f", "#1d5c43", "#4da37a", "#8be0b2", "#c9eedb", "rgba(5,30,22,.7)"],
+  gece: ["Gece", "#0d0d18", "#1c1c3a", "#2d2d5c", "#8fa2ff", "#b8bfe8", "rgba(8,8,16,.8)"]
+};
+const LS = { get(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v){ try { localStorage.setItem(k, v); } catch (e) {} } };
+function applyTheme(k){
+  const t = THEMES[k] || THEMES.gul, st = document.documentElement.style;
+  ["--g1","--g2","--g3","--acc","--mut","--nav"].forEach((v, i) => st.setProperty(v, t[i + 1]));
+}
+applyTheme(LS.get("ih_theme") || "okyanus");
+
+/* ===== Satranç motoru ===== */
+/* ===== /Satranç motoru ===== */
+
+/* ---------- Sesler (WebAudio, dosya gerekmez) ---------- */
+let AC = null; const SND_ON = true;
+const audioCtx = () => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === "suspended") AC.resume(); return AC; } catch (e) { return null; } };
+addEventListener("pointerdown", audioCtx, { passive: true });
+const tone = (f, t, d, o = {}) => {
+  const c = audioCtx(); if (!c || !SND_ON) return;
+  const s = c.currentTime + t, os = c.createOscillator(), g = c.createGain();
+  os.type = o.type || "sine"; os.frequency.setValueAtTime(f, s); if (o.to) os.frequency.exponentialRampToValueAtTime(o.to, s + d);
+  g.gain.setValueAtTime(0.0001, s); g.gain.exponentialRampToValueAtTime(o.v || .3, s + .01); g.gain.exponentialRampToValueAtTime(.0001, s + d);
+  os.connect(g); g.connect(c.destination); os.start(s); os.stop(s + d + .02);
+};
+const noise = (t, d, o = {}) => {
+  const c = audioCtx(); if (!c || !SND_ON) return;
+  const n = Math.max(1, Math.floor(c.sampleRate * d)), buf = c.createBuffer(1, n, c.sampleRate), ch = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) ch[i] = (Math.random() * 2 - 1) * (1 - i / n);
+  const s = c.currentTime + t, src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+  src.buffer = buf; f.type = o.type || "lowpass"; f.frequency.value = o.f || 1200; g.gain.value = o.v || .3;
+  src.connect(f); f.connect(g); g.connect(c.destination); src.start(s);
+};
+const snd = {
+  tick(){ tone(900, 0, .05, {v: .12}); },
+  move(){ tone(200, 0, .09, {to: 90, v: .5, type: "triangle"}); noise(0, .04, {f: 2500, v: .25}); },
+  cap(){ tone(170, 0, .12, {to: 70, v: .6, type: "triangle"}); noise(0, .08, {f: 3000, v: .45}); tone(240, .09, .1, {to: 90, v: .45, type: "triangle"}); },
+  check(){ tone(880, 0, .18, {v: .25}); tone(1320, .12, .28, {v: .22}); },
+  win(){ [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .13, .3, {v: .28, type: "triangle"})); },
+  lose(){ [392, 330, 262].forEach((f, i) => tone(f, i * .18, .35, {v: .26, type: "triangle"})); },
+  splash(){ noise(0, .28, {f: 900, v: .35}); tone(500, 0, .12, {to: 200, v: .12}); },
+  boom(){ tone(110, 0, .45, {to: 35, v: .8, type: "sawtooth"}); noise(0, .4, {f: 600, v: .6}); },
+  boing(){ tone(300, 0, .12, {to: 700, v: .3, type: "triangle"}); tone(700, .12, .14, {to: 380, v: .25, type: "triangle"}); tone(380, .26, .1, {to: 560, v: .18, type: "triangle"}); },
+  flap(){ tone(480, 0, .08, {to: 760, v: .15, type: "triangle"}); },
+  ding(){ tone(880, 0, .09, {v: .22}); tone(1318, .07, .14, {v: .2}); },
+  puff(){ noise(0, .2, {f: 2200, v: .22, type: "highpass"}); tone(500, 0, .08, {to: 200, v: .06}); },
+  bite(){ tone(260, 0, .07, {to: 130, v: .3, type: "triangle"}); noise(0, .06, {f: 2400, v: .3}); },
+  sink(){ snd.boom(); tone(400, .25, .6, {to: 80, v: .25, type: "triangle"}); }
+};
+
+/* ---------- Mini satranç motoru (5x5, sade kurallar) ---------- */
+const MC = (() => {
+  const N = 5, START = "rnbqk" + "ppppp" + "....." + "PPPPP" + "RNBQK";
+  const col = p => p === "." ? "" : (p === p.toUpperCase() ? "w" : "b");
+  const D = { n: [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]], k: [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]], r: [[-1,0],[1,0],[0,-1],[0,1]], b: [[-1,-1],[-1,1],[1,-1],[1,1]] };
+  D.q = D.r.concat(D.b);
+  const pseudo = (b, i) => {
+    const p = b[i], c = col(p), t = p.toLowerCase(), r = Math.floor(i / N), f = i % N, out = [];
+    if (t === "p") {
+      const r2 = r + (c === "w" ? -1 : 1);
+      if (r2 >= 0 && r2 < N) {
+        if (b[r2 * N + f] === ".") out.push(r2 * N + f);
+        [-1, 1].forEach(df => { const f2 = f + df; if (f2 >= 0 && f2 < N) { const q = b[r2 * N + f2]; if (q !== "." && col(q) !== c) out.push(r2 * N + f2); } });
+      }
+    } else if (t === "n" || t === "k") {
+      D[t].forEach(([dr, df]) => { const rr = r + dr, ff = f + df; if (rr >= 0 && rr < N && ff >= 0 && ff < N) { const q = b[rr * N + ff]; if (q === "." || col(q) !== c) out.push(rr * N + ff); } });
+    } else {
+      D[t].forEach(([dr, df]) => { let rr = r + dr, ff = f + df; while (rr >= 0 && rr < N && ff >= 0 && ff < N) { const q = b[rr * N + ff]; if (q === ".") out.push(rr * N + ff); else { if (col(q) !== c) out.push(rr * N + ff); break; } rr += dr; ff += df; } });
+    }
+    return out;
+  };
+  const play = (b, from, to) => {
+    let p = b[from]; const r = Math.floor(to / N);
+    if (p === "P" && r === 0) p = "Q"; if (p === "p" && r === N - 1) p = "q";
+    const a = b.split(""); a[to] = p; a[from] = "."; return a.join("");
+  };
+  const attacked = (b, i, by) => { for (let j = 0; j < N * N; j++) if (col(b[j]) === by && pseudo(b, j).includes(i)) return true; return false; };
+  const inCheck = (b, c) => { const k = b.indexOf(c === "w" ? "K" : "k"); return k >= 0 && attacked(b, k, c === "w" ? "b" : "w"); };
+  const legal = (b, i) => pseudo(b, i).filter(j => !inCheck(play(b, i, j), col(b[i])));
+  const any = (b, c) => { for (let i = 0; i < N * N; i++) if (col(b[i]) === c && legal(b, i).length) return true; return false; };
+  return { N, START, col, legal, play, inCheck, any };
+})();
+
+/* ---------- Uçan Kalp motoru ---------- */
+const FL = (() => {
+  const W = 300, H = 440, GR = 46, BX = 80, PW = 54, R = 12, DIST = 178;
+  const gapOf = sc => Math.max(112, 152 - sc * 1.6), spd = sc => Math.min(3.5, 2.2 + sc * .05);
+  const fresh = () => ({y: 200, v: 0, p: [], score: 0, dead: false, on: false, t: 0, ding: false});
+  const spawn = s => {
+    const prev = s.p.length ? s.p[s.p.length - 1] : null, gap = gapOf(s.score), lo = 46 + gap / 2, hi = H - GR - 46 - gap / 2;
+    let c = lo + Math.random() * (hi - lo);
+    if (prev) { const pc = prev.top + prev.gap / 2; c = Math.max(pc - 120, Math.min(pc + 120, c)); c = Math.max(lo, Math.min(hi, c)); }
+    s.p.push({x: prev ? prev.x + DIST : W + 60, top: c - gap / 2, gap, ok: false});
+  };
+  const flap = s => { if (!s.dead) { s.v = -7.1; s.on = true; } };
+  const step = (s, k) => {
+    if (s.dead) return s;
+    if (!s.on) { s.t += k; s.y = 200 + Math.sin(s.t * .08) * 8; return s; }
+    s.v = Math.min(9.5, s.v + .42 * k); s.y += s.v * k;
+    const sp = spd(s.score) * k; s.p.forEach(p => { p.x -= sp; });
+    if (s.p.length && s.p[0].x < -PW - 10) s.p.shift();
+    while (!s.p.length || s.p[s.p.length - 1].x < W + 20) spawn(s);
+    s.p.forEach(p => { if (!p.ok && p.x + PW < BX - R) { p.ok = true; s.score++; s.ding = true; } });
+    if (s.y - R < 0 || s.y + R > H - GR) s.dead = true;
+    s.p.forEach(p => { if (BX + R > p.x && BX - R < p.x + PW && (s.y - R < p.top || s.y + R > p.top + p.gap)) s.dead = true; });
+    return s;
+  };
+  return {W, H, GR, BX, PW, R, fresh, flap, step};
+})();
+
+function init(){
+  /* Arka plan kalpleri */
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement("span"); s.textContent = ["💗","💕","💖","🌹"][i%4];
+    s.style.cssText = `left:${Math.random()*100}%;font-size:${14+Math.random()*22}px;animation-duration:${8+Math.random()*10}s;animation-delay:-${Math.random()*14}s`;
+    $("bg").append(s);
+  }
+
+  /* Ayarlar */
+  Object.keys(THEMES).forEach(k => {
+    const t = THEMES[k], b = document.createElement("button");
+    b.textContent = t[0]; b.style.background = "linear-gradient(135deg," + t[1] + "," + t[3] + ")";
+    if ((LS.get("ih_theme") || "okyanus") === k) b.classList.add("sel");
+    b.onclick = () => { applyTheme(k); LS.set("ih_theme", k); q(".thm button").forEach(x => x.classList.toggle("sel", x === b)); };
+    $("thm").append(b);
+  });
+  const hearts = LS.get("ih_hearts") !== "0"; $("hrt").checked = hearts; $("bg").hidden = !hearts;
+  $("hrt").onchange = () => { $("bg").hidden = !$("hrt").checked; LS.set("ih_hearts", $("hrt").checked ? "1" : "0"); };
+  $("gear").onclick = () => { $("set").hidden = false; };
+  $("sx").onclick = () => { $("set").hidden = true; };
+  $("set").onclick = e => { if (e.target === $("set")) $("set").hidden = true; };
+
+  /* Yeni mesaj bildirimi */
+  let seenTs = +LS.get("ih_seen") || 0, unread = 0, maxTs = seenTs;
+  if (!seenTs) { seenTs = maxTs = Date.now(); LS.set("ih_seen", seenTs); }
+  const chatOn = () => $("t-chat").classList.contains("on");
+  const showUnread = () => { $("nb").textContent = unread; $("nb").hidden = !unread; $("np").hidden = !unread || chatOn(); $("np").textContent = "💌 " + unread + " yeni mesaj"; };
+  const markSeen = () => { seenTs = maxTs; LS.set("ih_seen", seenTs); unread = 0; showUnread(); };
+  const onMsg = m => {
+    const ts = m.ts || 0; if (ts > maxTs) maxTs = ts;
+    if (chatOn()) markSeen(); else if (m.name !== me && ts > seenTs) { unread++; showUnread(); }
+  };
+  $("np").onclick = () => document.querySelector('nav [data-t="chat"]').click();
+
+  /* Seni düşünüyorum */
+  if (db) {
+    const tr = ref(db, R + "/think"); let cool = 0, cur = 0;
+    $("tt").onclick = () => { $("tt").hidden = true; if (cur) LS.set("ih_think", cur); };
+    onValue(tr, s => {
+      const v = s.val(); if (!v) return;
+      $("thk").textContent = "Son düşünce: " + (v.from === me ? "sen" : v.from) + " · " + new Date(v.id).toLocaleString("tr-TR", {day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"});
+      if (v.from === me || v.id <= (+LS.get("ih_think") || 0)) return;
+      cur = v.id; $("tt").textContent = "💗 " + v.from + " seni düşündü"; $("tt").hidden = false;
+    });
+    $("think").onclick = () => {
+      if (Date.now() < cool) return; cool = Date.now() + 3000;
+      set(tr, {from: me, id: Date.now()}); $("think").textContent = "Gönderildi 💗";
+      setTimeout(() => { $("think").textContent = "💭 Seni düşünüyorum"; }, 2500);
+    };
+  } else $("think").hidden = true;
+
+  /* Öpücük: tek dokunuş, öpücük emojileri sevgilinin ekranına uçar */
+  if (db) {
+    const kr = ref(db, R + "/kiss"); let kcool = 0;
+    const fly = n => {
+      for (let i = 0; i < n; i++) setTimeout(() => {
+        const e = document.createElement("div"); e.className = "kf"; e.textContent = "💋";
+        e.style.left = 5 + Math.random() * 85 + "%"; e.style.fontSize = 28 + Math.random() * 30 + "px"; e.style.animationDuration = 2.2 + Math.random() * 1.6 + "s";
+        document.body.append(e); setTimeout(() => e.remove(), 4200);
+      }, i * 130);
+    };
+    onValue(kr, s => {
+      const v = s.val(); if (!v || v.from === me || Date.now() - v.id > 60000 || v.id <= (+LS.get("ih_kiss") || 0)) return;
+      LS.set("ih_kiss", v.id); fly(16); if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
+    });
+    $("beat").onclick = () => { if (Date.now() < kcool) return; kcool = Date.now() + 1500; set(kr, {from: me, id: Date.now()}); fly(5); };
+  } else $("beat").hidden = true;
+
+  /* Zıpla: tek dokunuş, sevgilinin ekranında "kucağına zıpladı" bildirimi ve zıplayan tavşan efekti */
+  if (db) {
+    const jr = ref(db, R + "/jump"); let jcool = 0;
+    const toastJ = t => { const e = document.createElement("div"); e.className = "jt"; e.textContent = t; document.body.append(e); setTimeout(() => e.remove(), 3800); };
+    const hop = big => {
+      const b = document.createElement("div"); b.className = "bn" + (big ? "" : " sm"); b.textContent = "🐰"; document.body.append(b);
+      setTimeout(() => {
+        for (let i = 0; i < 12; i++) {
+          const h = document.createElement("div"); h.className = "bh"; h.textContent = ["💗", "💖", "💞"][i % 3];
+          h.style.setProperty("--dx", (Math.random() * 240 - 120) + "px"); h.style.setProperty("--dy", (-60 - Math.random() * 160) + "px");
+          document.body.append(h); setTimeout(() => h.remove(), 1400);
+        }
+      }, big ? 1500 : 1100);
+      setTimeout(() => b.remove(), 3000);
+    };
+    onValue(jr, s => {
+      const v = s.val(); if (!v || v.from === me || Date.now() - v.id > 60000 || v.id <= (+LS.get("ih_jump") || 0)) return;
+      LS.set("ih_jump", v.id); toastJ(v.from + " kucağına zıpladı 🐰💗"); hop(true); snd.boing(); if (navigator.vibrate) navigator.vibrate([40, 60, 120]);
+    });
+    $("jmp").onclick = () => { if (Date.now() < jcool) return; jcool = Date.now() + 3000; set(jr, {from: me, id: Date.now()}); toastJ("Kucağına zıpladın 🐰"); hop(false); snd.boing(); };
+  } else $("jmp").hidden = true;
+
+  /* Aktiflik işareti */
+  if (db) {
+    const pid = me === "Hamza" ? "h" : "i", qid = pid === "h" ? "i" : "h", seen = {h: 0, i: 0}, PN = {h: "Hamza", i: "İrem"};
+    const on = k => k === pid ? !document.hidden : Date.now() - seen[k] < 20000;
+    const showPres = () => { $("pres").innerHTML = ["i", "h"].map(k => '<span class="pd' + (on(k) ? " on" : "") + '"></span>' + PN[k]).join(" &nbsp; ") + (on("h") && on("i") ? " · 💞 İkimiz de buradayız" : ""); };
+    const beat = () => { set(ref(db, R + "/presence/" + pid), document.hidden ? 0 : Date.now()); showPres(); };
+    onValue(ref(db, R + "/presence/" + qid), s => { seen[qid] = s.val() || 0; showPres(); });
+    document.addEventListener("visibilitychange", beat); addEventListener("pagehide", () => set(ref(db, R + "/presence/" + pid), 0));
+    beat(); setInterval(beat, 8000); setInterval(showPres, 4000);
+  }
+
+  /* Takvim: ortak anılar ve planlar (Firebase'de saklanır) */
+  {
+    const MON = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"], DAY = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+    const ICONS = ["💗","🎂","🎁","✈️","🍽️","🎬","🌹","☕","🏠","💍","🎉","🌙","⭐","🎓"];
+    const pad = n => String(n).padStart(2, "0"), keyOf = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+    const parts = k => k.split("-").map(Number), fmt = k => { const [y, m, d] = parts(k); return d + " " + MON[m - 1] + " " + y; };
+    const startOfToday = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+    const defIco = t => t === "p" ? "🗓️" : "💗", reduceM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ev = new Map(), cr = ref(db, R + "/cal");
+    let view = startOfToday(); view.setDate(1);
+    let sel = keyOf(new Date()), kind = "p", icon = defIco("p"), editing = null, delArmed = false, gridAnim = 0;
+    const special = k => {
+      const [y, m, d] = parts(k), out = [];
+      if (m === 11 && d === 15) out.push({ico: "🎂", title: "İrem'in doğum günü", sp: 1});
+      if (m === 8 && d === 25) out.push({ico: "🎂", title: "Hamza'nın doğum günü", sp: 1});
+      if (m === 7 && d === 6) out.push({ico: "💞", title: y > 2026 ? (y - 2026) + ". yıldönümümüz" : "Birlikte olduğumuz gün", sp: 1});
+      else if (d === 6 && (y * 12 + m) > (2026 * 12 + 7)) { const n = y * 12 + m - (2026 * 12 + 7); out.push({ico: "💕", title: n + ". ayımız", sp: 1}); }
+      return out;
+    };
+    const occ = (e, k) => e.d === k || (e.yr && e.d.slice(5) === k.slice(5) && k > e.d);
+    const on = k => [...ev.entries()].filter(([id, e]) => occ(e, k)).map(([id, e]) => ({...e, id, rep: e.d !== k})).sort((a, b) => a.ts - b.ts);
+    const nextOcc = e => {
+      if (!e.yr) return e.d; const [, m, d] = parts(e.d), t = startOfToday(); let c = new Date(t.getFullYear(), m - 1, d);
+      if (c < t) c = new Date(t.getFullYear() + 1, m - 1, d); const k = keyOf(c); return k >= e.d ? k : e.d;
+    };
+    const daysTo = k => { const [y, m, d] = parts(k); return Math.round((new Date(y, m - 1, d) - startOfToday()) / 864e5); };
+    const left = n => n === 0 ? "bugün 🎉" : n === 1 ? "yarın" : n > 1 ? n + " gün kaldı" : "";
+    const el = (tag, cls, txt) => { const x = document.createElement(tag); if (cls) x.className = cls; if (txt != null) x.textContent = txt; return x; };
+    const card = (e, mode) => {
+      const c = el("div", "cev " + (e.sp ? "s" : e.t)), b = el("div", "cbody");
+      c.append(el("span", "ci", e.ico || defIco(e.t)));
+      if (mode === "list") b.append(el("small", "cwhen", fmt(e.d) + (e.t === "p" ? " · " + left(daysTo(e.d)) : "")));
+      b.append(el("b", "", e.title));
+      if (e.note) b.append(el("small", "", e.note));
+      const meta = [e.by ? "— " + e.by : "", e.yr ? "🔁 her yıl" : ""].filter(Boolean).join("  ·  ");
+      if (meta) b.append(el("small", "cmeta", meta));
+      c.append(b);
+      if (mode === "day" && !e.sp) { c.classList.add("tap"); c.onclick = () => openSheet(e); }
+      if (mode === "list") { c.classList.add("tap"); c.onclick = () => go(e.d, true); }
+      return c;
+    };
+    const grid = dir => {
+      const y = view.getFullYear(), m = view.getMonth(), off = (new Date(y, m, 1).getDay() + 6) % 7, dim = new Date(y, m + 1, 0).getDate(), tk = keyOf(new Date());
+      $("cmon").textContent = MON[m] + " " + y;
+      let h = "", mem = 0, pl = 0; for (let i = 0; i < off; i++) h += '<div class="cc e"></div>';
+      for (let d = 1; d <= dim; d++) {
+        const k = y + "-" + pad(m + 1) + "-" + pad(d), es = on(k), sp = special(k), first = sp[0] ? sp[0].ico : (es[0] ? (es[0].ico || defIco(es[0].t)) : ""), n = es.length + sp.length;
+        es.forEach(e => { if (e.t === "m") mem++; else pl++; });
+        const types = (es.some(e => e.t === "m") ? '<i class="dm"></i>' : "") + (es.some(e => e.t === "p") ? '<i class="dp"></i>' : "") + (sp.length ? '<i class="ds"></i>' : "");
+        h += '<button class="cc' + (k === tk ? " td" : "") + (k === sel ? " sl" : "") + ((off + d - 1) % 7 >= 5 ? " we" : "") + '" data-d="' + k + '" style="--i:' + d + '"><b>' + d + '</b><span class="ce">' + first + (n > 1 ? "<sup>" + n + "</sup>" : "") + '</span><span class="cdots">' + types + '</span></button>';
+      }
+      const g = $("cgr"); g.innerHTML = h;
+      $("csum").textContent = mem || pl ? "Bu ay: " + (mem ? mem + " anı" : "") + (mem && pl ? " · " : "") + (pl ? pl + " plan" : "") : "Bu ay henüz kayıt yok. Bir güne dokunup ekleyebilirsin 💗";
+      if (dir && !reduceM && g.animate) {
+        g.animate([{transform: "translateX(" + (dir * 40) + "px)", opacity: 0}, {transform: "none", opacity: 1}], {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)"});
+        g.classList.add("anim"); clearTimeout(gridAnim); gridAnim = setTimeout(() => g.classList.remove("anim"), 700);
+      }
+    };
+    const dayPanel = () => {
+      const [y, m, d] = parts(sel); $("cdt").textContent = d + " " + MON[m - 1] + " " + y + ", " + DAY[new Date(y, m - 1, d).getDay()];
+      const L = $("cdl"); L.textContent = "";
+      const items = [...special(sel), ...on(sel)];
+      if (!items.length) { const p = el("div", "cemp"); p.append(el("span", "cemo", "🌱"), el("p", "", sel < keyOf(new Date()) ? "Bu günü kayıt altına almadık. Hatırladığın bir şey varsa ekle 💗" : "Bu gün için henüz planımız yok. Bir şey ekleyelim!")); L.append(p); }
+      items.forEach((e, i) => { const c = card(e, "day"); c.style.setProperty("--i", i); L.append(c); });
+      if (items.some(e => !e.sp)) L.append(el("small", "chint", "Düzenlemek ya da silmek için kayda dokun"));
+    };
+    const fill = (box, list, empty) => {
+      box.textContent = "";
+      if (!list.length) { box.append(el("div", "cemp", "")); box.firstChild.append(el("p", "", empty)); return; }
+      list.forEach((e, i) => { const c = card(e, "list"); c.style.setProperty("--i", i); box.append(c); });
+    };
+    const lists = () => {
+      const tk = keyOf(new Date()), arr = [...ev.entries()].map(([id, e]) => ({...e, id}));
+      fill($("cup"), arr.filter(e => e.t === "p").map(e => ({...e, d: nextOcc(e)})).filter(e => e.d >= tk).sort((a, b) => a.d.localeCompare(b.d)).slice(0, 6), "Henüz bir plan yok. ＋ düğmesiyle ilk planımızı ekleyelim!");
+      fill($("cmem"), arr.filter(e => e.t === "m").sort((a, b) => b.d.localeCompare(a.d)).slice(0, 5), "Henüz anı yok. İlk anımızı ekleyelim 💗");
+    };
+    const banner = () => {
+      const t = startOfToday(), tk = keyOf(t); let best = null;
+      const pick = (d, ico, title) => { if (d >= tk && (!best || d < best.d)) best = {d, ico, title}; };
+      ev.forEach(e => { if (e.t === "p") pick(nextOcc(e), e.ico || "🗓️", e.title); });
+      let b = new Date(t.getFullYear(), 10, 15); if (b < t) b = new Date(t.getFullYear() + 1, 10, 15); pick(keyOf(b), "🎂", "İrem'in doğum günü");
+      let hb = new Date(t.getFullYear(), 7, 25); if (hb < t) hb = new Date(t.getFullYear() + 1, 7, 25); pick(keyOf(hb), "🎂", "Hamza'nın doğum günü");
+      let a = new Date(t.getFullYear(), 6, 6); if (a < t) a = new Date(t.getFullYear() + 1, 6, 6); pick(keyOf(a), "💞", (a.getFullYear() - 2026) + ". yıldönümümüz");
+      const box = $("cnextp"); box.textContent = ""; if (!best) return;
+      box.append(el("span", "ni", best.ico)); const bd = el("div", "nb2"); bd.append(el("small", "", "Sıradaki"), el("b", "", best.title), el("small", "nc", fmt(best.d) + " · " + left(daysTo(best.d))));
+      box.append(bd); box.onclick = () => go(best.d, true);
+    };
+    const redraw = () => { grid(); dayPanel(); lists(); banner(); };
+    const go = (k, scroll) => {
+      const [y, m] = parts(k), same = view.getFullYear() === y && view.getMonth() === m - 1, dir = same ? 0 : (new Date(y, m - 1, 1) > view ? 1 : -1);
+      sel = k; view = new Date(y, m - 1, 1); grid(dir); dayPanel(); lists(); banner();
+      if (scroll) $("cdaybox").scrollIntoView({behavior: reduceM ? "auto" : "smooth", block: "nearest"});
+    };
+    const shift = d => { view = new Date(view.getFullYear(), view.getMonth() + d, 1); grid(d); };
+    $("cgr").onclick = e => { const b = e.target.closest("[data-d]"); if (b) { sel = b.dataset.d; document.querySelectorAll("#cgr .cc.sl").forEach(x => x.classList.remove("sl")); b.classList.add("sl"); dayPanel(); } };
+    let tx = null; $("cgr").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive: true});
+    $("cgr").addEventListener("touchend", e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 55) shift(dx < 0 ? 1 : -1); }, {passive: true});
+    $("cprev").onclick = () => shift(-1); $("cnext").onclick = () => shift(1);
+    $("ctoday").onclick = () => go(keyOf(new Date()));
+    /* Ekleme / düzenleme sayfası */
+    const icons = () => { const box = $("cico"); box.textContent = ""; ICONS.concat(["🗓️"]).forEach(ic => { const b = el("button", ic === icon ? "on" : "", ic); b.onclick = () => { icon = ic; icons(); }; box.append(b); }); };
+    const seg = () => { $("ckm").classList.toggle("on", kind === "m"); $("ckp").classList.toggle("on", kind === "p"); };
+    const setKind = k => { if (icon === defIco(kind)) icon = defIco(k); kind = k; seg(); icons(); };
+    $("ckm").onclick = () => setKind("m"); $("ckp").onclick = () => setKind("p");
+    const openSheet = e => {
+      editing = e || null; delArmed = false; $("cdel").textContent = "🗑 Sil";
+      kind = e ? e.t : (sel >= keyOf(new Date()) ? "p" : "m"); icon = e ? (e.ico || defIco(e.t)) : defIco(kind);
+      $("csht").textContent = e ? "Kaydı düzenle" : "Yeni kayıt"; $("cti").value = e ? e.title : ""; $("cno").value = e ? (e.note || "") : "";
+      $("cdate").value = e ? e.d : sel; $("cyr").checked = !!(e && e.yr); $("cdel").hidden = !e;
+      seg(); icons(); const sh = $("csheet"); sh.classList.remove("out"); sh.hidden = false; if (!e) setTimeout(() => $("cti").focus(), 320);
+    };
+    const closeSheet = () => { const sh = $("csheet"); sh.classList.add("out"); setTimeout(() => { sh.hidden = true; sh.classList.remove("out"); }, 220); };
+    $("cadd").onclick = () => openSheet(null); $("cfab").onclick = () => openSheet(null);
+    $("ccan").onclick = closeSheet; $("csbk").onclick = closeSheet;
+    $("csave").onclick = () => {
+      const title = $("cti").value.trim();
+      if (!title) { $("cti").focus(); $("cti").animate && $("cti").animate([{transform: "translateX(-6px)"}, {transform: "translateX(6px)"}, {transform: "none"}], {duration: 220}); return; }
+      const d = $("cdate").value || sel, data = {d, t: kind, title, note: $("cno").value.trim(), by: editing ? editing.by : me, ts: editing ? editing.ts : Date.now(), ico: icon, yr: $("cyr").checked ? 1 : 0};
+      if (editing) set(ref(db, R + "/cal/" + editing.id), null);
+      push(cr, data); sel = d; const [y, m] = parts(d); view = new Date(y, m - 1, 1); closeSheet(); setTimeout(() => { grid(); dayPanel(); }, 30);
+    };
+    $("cdel").onclick = () => {
+      if (!delArmed) { delArmed = true; $("cdel").textContent = "Emin misin? Tekrar bas"; setTimeout(() => { delArmed = false; $("cdel").textContent = "🗑 Sil"; }, 3000); return; }
+      set(ref(db, R + "/cal/" + editing.id), null); closeSheet();
+    };
+    onChildAdded(cr, s => { ev.set(s.key, s.val()); redraw(); });
+    onChildRemoved(cr, s => { ev.delete(s.key); redraw(); });
+    redraw();
+  }
+
+  /* Sekmeler */
+  q("nav button").forEach(b => b.onclick = () => {
+    q("nav button").forEach(x => x.classList.toggle("on", x === b));
+    q(".tab").forEach(t => t.classList.toggle("on", t.id === "t-" + b.dataset.t));
+    if (b.dataset.t === "chat") { $("msgs").scrollTop = $("msgs").scrollHeight; markSeen(); } else showUnread();
+  });
+
+  /* Sayaç */
+  const S = new Date(2026, 6, 6);
+  const bump = (el, v) => { if (el.textContent !== String(v)) { el.textContent = v; el.classList.remove("tk"); void el.offsetWidth; el.classList.add("tk"); } };
+  const tick = () => {
+    const s = Math.max(0, Math.floor((Date.now() - S) / 1e3)), d = Math.floor(s / 86400);
+    bump($("dd"), d); bump($("d1"), d); bump($("hh"), Math.floor(s % 86400 / 3600)); bump($("mm"), Math.floor(s % 3600 / 60)); bump($("ss"), s % 60);
+  };
+  tick(); setInterval(tick, 1000);
+
+  /* Doğum günü */
+  const now = new Date(); let t = new Date(now.getFullYear(), 10, 15);
+  if (now > new Date(t.getTime() + 864e5)) t = new Date(now.getFullYear() + 1, 10, 15);
+  const left = Math.ceil((t - now) / 864e5);
+  const NS = "http://www.w3.org/2000/svg", cands = []; let lit = 5, ctx = null;
+  const ac = () => { try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); ctx.resume(); } catch (e) {} return ctx; };
+  const SONG = [[392,.75],[392,.25],[440,1],[392,1],[523,1],[494,2],[392,.75],[392,.25],[440,1],[392,1],[587,1],[523,2],[392,.75],[392,.25],[784,1],[659,1],[523,1],[494,1],[440,1],[698,.75],[698,.25],[659,1],[523,1],[587,1],[523,2]];
+  const song = () => {
+    const c = ac(); if (!c) return; let t = c.currentTime + .1;
+    SONG.forEach(([f, d]) => {
+      const o = c.createOscillator(), g = c.createGain(), l = d * .45;
+      o.type = "triangle"; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.25, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + l - .02);
+      o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + l); t += l;
+    });
+  };
+  const balloons = () => {
+    for (let i = 0; i < 14; i++) {
+      const b = document.createElement("span"); b.className = "bln"; b.textContent = "🎈";
+      b.style.cssText = `left:${Math.random()*90}%;font-size:${34+Math.random()*26}px;filter:hue-rotate(${Math.random()*360}deg);animation-duration:${5+Math.random()*4}s;animation-delay:${Math.random()*1.5}s`;
+      $("bl").append(b); setTimeout(() => b.remove(), 11000);
+    }
+  };
+  const cheer = () => {
+    const ck = $("cake");
+    if (ck.animate) ck.animate([{transform: "translateY(0) scale(1,1)"}, {transform: "translateY(8px) scale(1.06,.92)", offset: .12}, {transform: "translateY(-34px) scale(.95,1.08)", offset: .4}, {transform: "translateY(0) scale(1.08,.9)", offset: .62}, {transform: "translateY(-12px) scale(.98,1.03)", offset: .8}, {transform: "translateY(0) scale(1,1)"}], {duration: 1000, easing: "ease-out"});
+    const r = ck.getBoundingClientRect();
+    for (let i = 0; i < 16; i++) {
+      const e = document.createElement("span"); e.className = "spkl"; e.textContent = "✨";
+      e.style.left = (r.left + Math.random() * r.width) + "px"; e.style.top = (r.top + r.height * (.1 + Math.random() * .8)) + "px"; e.style.fontSize = (16 + Math.random() * 18) + "px";
+      document.body.append(e);
+      if (e.animate) e.animate([{transform: "translateY(0) scale(.3) rotate(0deg)", opacity: 0}, {opacity: 1, offset: .25}, {transform: "translateY(" + (-60 - Math.random() * 80) + "px) scale(1.2) rotate(" + (Math.random() * 120 - 60) + "deg)", opacity: 0}], {duration: 1100 + Math.random() * 700, delay: Math.random() * 400, easing: "ease-out", fill: "both"}).onfinish = () => e.remove(); else setTimeout(() => e.remove(), 1500);
+    }
+  };
+  const celebrate = () => { $("bmsg").textContent = BP.cel; confetti(220); fireworks(); balloons(); song(); cheer(); };
+  let BP = null;
+  const snuff = g => { if (g.classList.contains("off")) return; g.classList.add("off"); snd.puff(); if (--lit === 0) setTimeout(celebrate, 450); };
+  [78,99,120,141,162].forEach((x, i) => {
+    const g = document.createElementNS(NS, "g");
+    g.style.setProperty("--i", i); g.style.setProperty("--r", (Math.random()).toFixed(2));
+    g.innerHTML = `<circle class="gl" cx="${x}" cy="50" r="17" fill="url(#glw)"/><rect x="${x-3}" y="62" width="6" height="30" rx="2" fill="${i%2?'#ffd6e7':'#fff'}"/><rect x="${x-.9}" y="57" width="1.8" height="6" fill="#4a3a35"/><g class="fl"><ellipse cx="${x}" cy="50" rx="6" ry="11" fill="#ffb300"/><ellipse cx="${x}" cy="53" rx="3" ry="6" fill="#fff59d"/></g><circle class="em" cx="${x}" cy="58" r="2.2" fill="#ff7a2f"/><path class="sm" d="M${x} 56 q-6 -9 0 -18 t0 -18"/><circle cx="${x}" cy="52" r="17" fill="transparent"/>`;
+    g.onclick = () => { ac(); snuff(g); };
+    cands.push(g); $("cn").append(g);
+  });
+  let bt = 0;
+  const crumbs = (x, y) => {
+    for (let i = 0; i < 9; i++) {
+      const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 1.8 + Math.random() * 3);
+      c.style.fill = "var(--k2)"; c.style.stroke = "var(--k4)"; c.style.strokeWidth = ".6"; $("crumbs").append(c);
+      if (c.animate) c.animate([{transform: "translate(0,0)", opacity: 1}, {transform: "translate(" + ((Math.random() - .5) * 50) + "px," + (50 + Math.random() * 60) + "px)", opacity: 0}], {duration: 650 + Math.random() * 350, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards"}).onfinish = () => c.remove(); else setTimeout(() => c.remove(), 800);
+    }
+  };
+  const wobble = () => { const ck = $("cake"); if (ck.animate) ck.animate([{transform: "scale(1)"}, {transform: "scale(1.05,.95)"}, {transform: "scale(.98,1.03)"}, {transform: "scale(1)"}], {duration: 320}); };
+  $("cb").onclick = e => {
+    if (lit > 0) {
+      $("bmsg").textContent = "Önce mumları söndür sevgilim 🕯️";
+      cands.filter(g => !g.classList.contains("off")).forEach(g => { if (g.animate) g.animate([{transform: "rotate(0)"}, {transform: "rotate(-7deg)"}, {transform: "rotate(7deg)"}, {transform: "rotate(0)"}], {duration: 380}); });
+      return;
+    }
+    const r = $("cake").getBoundingClientRect(), c = document.createElementNS(NS, "circle"), bx = (e.clientX - r.left) * 240 / r.width, by = (e.clientY - r.top) * 230 / r.height;
+    c.setAttribute("cx", bx); c.setAttribute("cy", by); c.setAttribute("r", 20 + Math.random() * 8);
+    $("bites").append(c); bt++; snd.bite(); crumbs(bx, by); wobble();
+    if (bt >= 10) { $("cb").style.display = "none"; $("lh").style.display = ""; $("bmsg").textContent = "Pasta bitti, afiyet olsun aşkım 😋"; confetti(60); }
+    else $("bmsg").textContent = ["Ham! 😋", "Çok lezzetli aşkım 🍰", "Bir tane daha 😍", "Tadı harika sevgilim 💗"][bt % 4];
+  };
+  const replay = () => { const ck = $("cake"); ck.classList.remove("in"); void ck.getBoundingClientRect(); ck.classList.add("in"); };
+  const resetCake = () => { $("bites").innerHTML = ""; $("crumbs").textContent = ""; bt = 0; $("cb").style.display = ""; $("lh").style.display = "none"; cands.forEach(g => g.classList.remove("off")); lit = 5; $("bmsg").textContent = BP.msg0; replay(); };
+  $("relight").onclick = resetCake;
+  $("conf").onclick = () => { confetti(200); fireworks(); balloons(); };
+  $("song").onclick = song;
+  const BD = {
+    i: {m: 10, d: 15, head: "İrem'in doğum günü 🎂", today: "Bugün senin günün aşkım! 🎉", cd: n => "15 Kasım'a " + n + " gün kaldı sevgilim", msg0: "Mumlara dokun, sonra pastayı ye sevgilim 🕯️🍰", cel: "İyi ki doğdun aşkım! 🎂🎉 Şimdi pastayı yiyebilirsin, dokun 🍰", gt: "Sana hediyelerim var aşkım 🎁", gifts: [
+      ["Çok seviyorsun", "Sevgilim, sen çok seviyorsun; sevgin içten, cömert ve karşılıksız. Seni seven biri olmak dünyanın en güzel şansı."],
+      ["Çok bağlısın", "Aşkım, sen çok bağlısın; bir kere sevdin mi sonuna kadar yanında duruyorsun. Senin yanında güvenmek çok kolay."],
+      ["Tatlı ve güzelsin", "Sevgilim, hem çok tatlısın hem çok güzelsin; gülüşün günümü aydınlatıyor, her halin ayrı güzel."],
+      ["Birlikte büyüyoruz", "Sevgilim, her gün biraz daha öğreniyor, birbirimizin elinden tutarak büyüyoruz. Sen benim en güzel yol arkadaşımsın aşkım."]]}
+  };
+  const daysTo2 = p => { const n = new Date(); let t = new Date(n.getFullYear(), p.m, p.d); if (n > new Date(t.getTime() + 864e5)) t = new Date(n.getFullYear() + 1, p.m, p.d); return Math.ceil((t - n) / 864e5); };
+  const setPerson = k => {
+    BP = BD[k]; const left2 = daysTo2(BP);
+    $("bt2").textContent = BP.head; $("bcd").textContent = left2 <= 0 ? BP.today : BP.cd(left2); $("bgt").textContent = BP.gt;
+    $("gifts").textContent = "";
+    BP.gifts.forEach(([t, m]) => {
+      const b = document.createElement("button"); b.className = "gift"; b.innerHTML = "<span>🎁</span>" + t;
+      b.onclick = () => { if (b.classList.contains("open")) return; b.classList.add("open"); b.textContent = m; boom(innerWidth/2, innerHeight/2); };
+      $("gifts").append(b);
+    });
+    resetCake();
+  };
+  const setFlavor = f => { $("cake").classList.remove("fl-muz", "fl-cilek", "fl-cik"); $("cake").classList.add("fl-" + f); q("#bfl button").forEach(b => b.classList.toggle("on", b.dataset.f === f)); LS.set("ih_cake", f); };
+  q("#bfl button").forEach(b => b.onclick = () => setFlavor(b.dataset.f));
+  setFlavor(["muz", "cilek", "cik"].includes(LS.get("ih_cake")) ? LS.get("ih_cake") : "muz");
+  setPerson("i");
+
+  /* Oyunlar */
+  const G = $("gbody"); let off = () => {}, hiv;
+  const menu = () => { off(); off = () => {}; clearInterval(hiv); G.innerHTML = ""; $("gmenu").hidden = false; $("gback").hidden = true; };
+  $("gback").onclick = menu;
+  q("[data-g]").forEach(b => b.onclick = () => { $("gmenu").hidden = true; $("gback").hidden = false; if (!db && ["xox","rps","pong","mchess","battle","paint","flirt"].includes(b.dataset.g)) { G.innerHTML = NODB; return; } ({mem, flap, xox, rps, pong, pk, mchess, battle, paint, snake, flirt})[b.dataset.g](); });
+
+  function mem(){
+    const E = ["💖","🌹","💍","🧸","🍫","💌","🌙","🦋"], a = [...E, ...E].sort(() => Math.random() - .5);
+    G.innerHTML = '<p>Hamle: <b id="mv">0</b></p><div class="grid" id="mg"></div><p id="mmsg"></p>';
+    let f = [], mv = 0, done = 0, lock = false;
+    a.forEach(e => {
+      const b = document.createElement("button"); b.className = "cd"; b.textContent = "❔";
+      b.onclick = () => {
+        if (lock || b.dataset.o || f.includes(b)) return;
+        b.textContent = e; f.push(b);
+        if (f.length === 2) {
+          $("mv").textContent = ++mv; const [x, y] = f;
+          if (x.textContent === y.textContent) {
+            x.dataset.o = y.dataset.o = "1"; x.classList.add("ok2"); y.classList.add("ok2"); f = [];
+            if (++done === 8) { $("mmsg").textContent = "Bitti sevgilim, " + mv + " hamlede! 💖"; confetti(); }
+          } else { lock = true; setTimeout(() => { x.textContent = y.textContent = "❔"; f = []; lock = false; }, 700); }
+        }
+      };
+      $("mg").append(b);
+    });
+  }
+
+
+  function xox(){
+    const r = ref(db, R + "/xox"), mk = me === "Hamza" ? "X" : "O", W = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]], init0 = {b:"---------",t:"X",w:""};
+    G.innerHTML = '<p>Sen: <b>' + mk + '</b> (Hamza X, İrem O)</p><p id="xs"></p><div class="grid3" id="xg"></div><button class="btn alt" id="xr">Yeniden başlat</button>';
+    let st = init0;
+    const draw = () => {
+      $("xg").innerHTML = "";
+      [...st.b].forEach((c, i) => {
+        const b = document.createElement("button"); b.className = "cell"; b.textContent = c === "-" ? "" : c;
+        b.onclick = () => {
+          if (st.w || c !== "-" || st.t !== mk) return;
+          const nb = st.b.slice(0, i) + mk + st.b.slice(i + 1);
+          set(r, {b: nb, t: mk === "X" ? "O" : "X", w: W.some(l => l.every(k => nb[k] === mk)) ? mk : (nb.includes("-") ? "" : "=")});
+        };
+        $("xg").append(b);
+      });
+      $("xs").textContent = st.w === "=" ? "Berabere 🤝" : st.w ? (st.w === mk ? "Kazandın aşkım! 🎉" : "Rakip kazandı 💪") : st.t === mk ? "Sıra sende sevgilim" : "Sıra " + (st.t === "X" ? "Hamza" : "İrem") + "'de";
+    };
+    off = onValue(r, s => { st = s.val() || init0; draw(); });
+    $("xr").onclick = () => set(r, init0);
+  }
+
+  function rps(){
+    const id = me === "Hamza" ? "h" : "i", E = {r:"🪨", p:"📄", s:"✂️"}, beat = {r:"s", s:"p", p:"r"}, v = {};
+    G.innerHTML = '<p id="rs"></p><div class="row" id="rb"></div><button class="btn alt" id="rr">Yeni tur</button>';
+    const draw = () => {
+      const both = v.h && v.i; $("rb").innerHTML = "";
+      if (both) {
+        $("rb").innerHTML = `<div class="cell" style="width:90px;display:grid;place-items:center">${E[v.h]}</div><div class="cell" style="width:90px;display:grid;place-items:center">${E[v.i]}</div>`;
+        $("rs").textContent = "Hamza " + E[v.h] + " · İrem " + E[v.i] + " → " + (v.h === v.i ? "Berabere 🤝" : (beat[v.h] === v.i ? "Hamza" : "İrem") + " kazandı! 🎉");
+        return;
+      }
+      Object.keys(E).forEach(k => {
+        const b = document.createElement("button"); b.className = "cell" + (v[id] === k ? " sel" : ""); b.textContent = E[k];
+        b.onclick = () => { if (!v[id]) set(ref(db, R + "/rps/" + id), k); };
+        $("rb").append(b);
+      });
+      $("rs").textContent = v[id] ? "Seçtin, sevgilini bekliyorum…" : "Seçimini yap aşkım";
+    };
+    const a = onValue(ref(db, R + "/rps/h"), s => { v.h = s.val(); draw(); }), b = onValue(ref(db, R + "/rps/i"), s => { v.i = s.val(); draw(); });
+    off = () => { a(); b(); };
+    $("rr").onclick = () => { set(ref(db, R + "/rps/h"), null); set(ref(db, R + "/rps/i"), null); };
+  }
+
+  function pong(){
+    const W = 300, H = 420, PW = 72, TARGET = 5, BASE = 3.4, MAXV = 14;
+    const host = me === "Hamza", mine = host ? "h" : "i", other = host ? "i" : "h", base = R + "/pong2", NAMES = {h: "Hamza", i: "İrem"};
+    G.innerHTML = '<p id="ps"></p><canvas id="pc" width="300" height="420" style="width:100%;max-width:320px;touch-action:none;background:var(--card);border:1px solid var(--line);border-radius:16px"></canvas><div><button class="btn" id="pgo"' + (host ? "" : " hidden") + '>Başlat</button></div><p>Sen her zaman alttasın, parmağınla kaydır. İlk ' + TARGET + ' sayıyı alan kazanır. Top her vuruşta ve zamanla hızlanır, sonsuza kadar sürmez 😏</p>';
+    const c = $("pc"), g = c.getContext("2d"), tgt = {h: W/2, i: W/2}, shown = {h: W/2, i: W/2};
+    let ball = {x: W/2, y: H/2, vx: 0, vy: 0, st: "idle", sh: 0, si: 0, w: ""}, recv = performance.now(), raf = 0, last = -1, ptimer = 0, tprev = performance.now(), celebrated = false;
+    const sync = () => set(ref(db, base + "/ball"), ball);
+    const serve = dir => { ball = {...ball, x: W/2, y: H/2, vx: (Math.random() < .5 ? -1 : 1) * (1.2 + Math.random()), vy: dir * BASE, st: "play"}; sync(); };
+    const point = k => {
+      const key = k === "h" ? "sh" : "si"; ball[key]++;
+      if (ball[key] >= TARGET) { ball.st = "over"; ball.w = k; }
+      else { ball.st = "point"; ptimer = setTimeout(() => serve(k === "h" ? -1 : 1), 1200); }
+      sync();
+    };
+    const hit = k => {
+      ball.vy = (k === "h" ? -1 : 1) * Math.abs(ball.vy) * 1.07;
+      ball.vx = Math.max(-9, Math.min(9, ball.vx + (ball.x - shown[k]) / PW * 4));
+      ball.y = k === "h" ? H - 33 : 33; sync();
+    };
+    const once = m => {
+      ball.x += ball.vx * m; ball.y += ball.vy * m;
+      if (ball.x < 8) { ball.x = 8; ball.vx = Math.abs(ball.vx); } else if (ball.x > W - 8) { ball.x = W - 8; ball.vx = -Math.abs(ball.vx); }
+      const f = Math.pow(1.0003, m); ball.vx *= f; ball.vy *= f;
+      const sp = Math.hypot(ball.vx, ball.vy); if (sp > MAXV) { ball.vx *= MAXV / sp; ball.vy *= MAXV / sp; }
+      if (ball.vy > 0 && ball.y >= H - 32 && ball.y <= H - 6 && Math.abs(ball.x - shown.h) <= PW / 2 + 8) hit("h");
+      else if (ball.vy < 0 && ball.y <= 32 && ball.y >= 6 && Math.abs(ball.x - shown.i) <= PW / 2 + 8) hit("i");
+      else if (ball.y > H + 10) point("i");
+      else if (ball.y < -10) point("h");
+    };
+    if (host) sync();
+    const u1 = onValue(ref(db, base + "/p" + other), s => { if (s.exists()) tgt[other] = s.val(); });
+    const u2 = host ? () => {} : onValue(ref(db, base + "/ball"), s => { const v = s.val(); if (v) { ball = {...v}; recv = performance.now(); } });
+    c.onpointerdown = c.onpointermove = e => {
+      const r = c.getBoundingClientRect(); let x = (e.clientX - r.left) * W / r.width; if (!host) x = W - x;
+      tgt[mine] = shown[mine] = Math.max(PW/2, Math.min(W - PW/2, x));
+    };
+    const wi = setInterval(() => {
+      if (tgt[mine] !== last) { last = tgt[mine]; set(ref(db, base + "/p" + mine), Math.round(last)); }
+      if (host && ball.st === "play") sync();
+    }, 100);
+    $("pgo").onclick = () => { clearTimeout(ptimer); ball = {x: W/2, y: H/2, vx: 0, vy: 0, st: "idle", sh: 0, si: 0, w: ""}; celebrated = false; serve(Math.random() < .5 ? -1 : 1); };
+    const loop = now => {
+      const dt = Math.min(now - tprev, 50); tprev = now;
+      shown[other] += (tgt[other] - shown[other]) * Math.min(1, dt / 60);
+      let b = ball, wait = false;
+      if (host) { if (ball.st === "play") { const k = dt / 16.7, n = Math.max(1, Math.ceil(k)); for (let i = 0; i < n && ball.st === "play"; i++) once(k / n); b = ball; } }
+      else if (ball.st === "play") {
+        const el = performance.now() - recv;
+        if (el > 1500) wait = true;
+        else { const k = Math.min(el, 300) / 16.7; b = {...ball, x: Math.max(8, Math.min(W - 8, ball.x + ball.vx * k)), y: ball.y + ball.vy * k}; }
+      }
+      g.clearRect(0, 0, W, H); g.save();
+      if (!host) { g.translate(W, H); g.rotate(Math.PI); }
+      g.strokeStyle = "rgba(255,255,255,.2)"; g.setLineDash([8, 8]); g.beginPath(); g.moveTo(0, H/2); g.lineTo(W, H/2); g.stroke(); g.setLineDash([]);
+      g.fillStyle = "#ff6f9f"; g.beginPath(); g.roundRect(shown.i - PW/2, 8, PW, 10, 5); g.fill();
+      g.fillStyle = "#6fb7ff"; g.beginPath(); g.roundRect(shown.h - PW/2, H - 18, PW, 10, 5); g.fill();
+      if (ball.st === "play" && !wait) { g.fillStyle = "#fff"; g.beginPath(); g.arc(b.x, b.y, 8, 0, 7); g.fill(); }
+      g.restore();
+      const my = host ? ball.sh : ball.si, th = host ? ball.si : ball.sh, sp = Math.hypot(ball.vx, ball.vy) / BASE;
+      let t;
+      if (wait) t = NAMES[other] + " bağlı değil, bekliyorum…";
+      else if (ball.st === "play") t = "Sen " + my + " – " + th + " " + NAMES[other] + "  🔥 ×" + sp.toFixed(1);
+      else if (ball.st === "point") t = "Sayı! Sen " + my + " – " + th + " " + NAMES[other];
+      else if (ball.st === "over") t = (ball.w === mine ? "Kazandın 🎉 " : NAMES[other] + " kazandı 💗 ") + my + " – " + th;
+      else t = host ? "Başlat'a bas, maç başlasın" : NAMES.h + " başlatınca maç başlar";
+      $("ps").textContent = t;
+      $("pgo").hidden = !(host && (ball.st === "idle" || ball.st === "over")); $("pgo").textContent = ball.st === "over" ? "Tekrar oyna" : "Başlat";
+      if (ball.st === "over" && ball.w === mine && !celebrated) { celebrated = true; confetti(); }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    off = () => { cancelAnimationFrame(raf); clearInterval(wi); clearTimeout(ptimer); u1(); u2(); };
+  }
+
+  const PKC = '<canvas id="pkc" width="300" height="440" style="width:100%;max-width:320px;touch-action:none;background:var(--card);border:1px solid var(--line);border-radius:16px"></canvas>';
+  function pk(){
+    let best = 0; try { best = +localStorage.getItem("ih_pk") || 0; } catch (e) {}
+    G.innerHTML = '<p id="ps2">En iyi: ' + best + '</p>' + PKC + '<div><button class="btn" id="pkgo">Başla</button></div><p>Turşuları 🥒 parmağınla kes sevgilim. Acı biberi 🌶️ kesme, puan düşer!</p>';
+    let stop = () => {}; off = () => stop();
+    $("pkgo").onclick = () => {
+      stop(); $("pkgo").hidden = true;
+      stop = pickleGame($("pkc"), Math.floor(Math.random() * 1e9), 2, () => {}, sc => {
+        if (sc > best) { best = sc; try { localStorage.setItem("ih_pk", sc); } catch (e) {} }
+        $("ps2").textContent = "Süre bitti! " + sc + " puan · En iyi: " + best; $("pkgo").hidden = false; $("pkgo").textContent = "Tekrar oyna"; if (sc >= 15) confetti();
+      });
+    };
+  }
+
+
+  function snake(){
+    G.innerHTML = '<p id="ps2">Puan: 0</p><canvas id="sc" width="300" height="300" style="width:100%;max-width:320px;touch-action:none;background:var(--card);border:1px solid var(--line);border-radius:16px"></canvas><div><button class="btn" id="sgo">Başla</button></div><p>Sümüklü böceği parmağınla yönlendir sevgilim, taze yaprakları 🥬 ye. Duvara ya da kendi sümük izine çarpma!</p>';
+    const c = $("sc"), g = c.getContext("2d"), N = 15, S = 20; let sn = [], dir = null, nd = null, food = {x: 0, y: 0}, iv, pts = 0, sx = null, sy = 0;
+    off = () => clearInterval(iv);
+    const place = () => { do { food = {x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N)}; } while (sn.some(p => p.x === food.x && p.y === food.y)); };
+    const paintS = () => {
+      g.clearRect(0, 0, 300, 300);
+      sn.forEach((p, i) => { if (!i) return; g.fillStyle = i % 2 ? "rgba(190,235,215,.55)" : "rgba(160,220,200,.45)"; g.beginPath(); g.roundRect(p.x * S + 3, p.y * S + 3, S - 6, S - 6, 8); g.fill(); });
+      g.fillStyle = "#fff"; g.textAlign = "center"; g.textBaseline = "middle";
+      g.font = "22px serif"; g.fillText("🥬", food.x * S + 10, food.y * S + 11);
+      g.save(); g.translate(sn[0].x * S + 10, sn[0].y * S + 11); if (dir && dir.x > 0) g.scale(-1, 1); g.font = "24px serif"; g.fillText("🐌", 0, 0); g.restore();
+    };
+    const tick = () => {
+      dir = nd; const h = {x: sn[0].x + dir.x, y: sn[0].y + dir.y};
+      if (h.x < 0 || h.y < 0 || h.x >= N || h.y >= N || sn.some(p => p.x === h.x && p.y === h.y)) { clearInterval(iv); $("ps2").textContent = "Bitti! Puan: " + pts; $("sgo").hidden = false; $("sgo").textContent = "Tekrar oyna"; return; }
+      sn.unshift(h);
+      if (h.x === food.x && h.y === food.y) { pts++; $("ps2").textContent = "Puan: " + pts; place(); } else sn.pop();
+      paintS();
+    };
+    $("sgo").onclick = () => { sn = [{x: 7, y: 7}, {x: 6, y: 7}, {x: 5, y: 7}]; dir = nd = {x: 1, y: 0}; pts = 0; place(); $("ps2").textContent = "Puan: 0"; $("sgo").hidden = true; paintS(); clearInterval(iv); iv = setInterval(tick, 230); };
+    c.onpointerdown = e => { sx = e.clientX; sy = e.clientY; };
+    c.onpointerup = e => {
+      if (sx === null || !dir) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 12) return;
+      const n = Math.abs(dx) > Math.abs(dy) ? {x: Math.sign(dx), y: 0} : {x: 0, y: Math.sign(dy)};
+      if (n.x !== -dir.x || n.y !== -dir.y) nd = n;
+    };
+  }
+
+  function paint(){
+    const mk = me === "Hamza" ? "h" : "i", ok = mk === "h" ? "i" : "h", W = 300, COL = ["#ffffff", "#ff6f9f", "#e91e63", "#ff5252", "#ff9800", "#ffd24d", "#c6ff6f", "#7be0a0", "#00bcd4", "#6fb7ff", "#3f51b5", "#c792ff", "#9c27b0", "#8d6e63", "#9e9e9e", "#000000"];
+    G.innerHTML = '<p>Birlikte çizin sevgilim 🎨</p><canvas id="dc" width="300" height="300" style="width:100%;max-width:340px;touch-action:none;background:var(--card);border:1px solid var(--line);border-radius:16px"></canvas><div class="row" id="dp"></div><div><button class="btn alt" id="dw"></button><button class="btn alt" id="du">↩ Geri al</button><button class="btn alt" id="dx">🗑 Temizle</button></div>';
+    const c = $("dc"), g = c.getContext("2d"); let L = [], O = [], col = COL[1], wd = 4, cur = null, tm = 0, armed = 0;
+    const redraw = () => {
+      g.clearRect(0, 0, W, W); g.lineCap = g.lineJoin = "round";
+      [O, L].forEach(layer => layer.forEach(s => {
+        g.strokeStyle = g.fillStyle = s.c; g.lineWidth = s.w; const p = s.p;
+        if (p.length < 4) { g.beginPath(); g.arc(p[0], p[1], s.w / 2, 0, 7); g.fill(); return; }
+        g.beginPath(); g.moveTo(p[0], p[1]); for (let i = 2; i < p.length; i += 2) g.lineTo(p[i], p[i + 1]); g.stroke();
+      }));
+    };
+    const parse = v => { try { return v ? JSON.parse(v) : []; } catch (e) { return []; } };
+    const save = () => { const t = JSON.stringify(L); if (t.length < 900000) set(ref(db, R + "/draw/" + mk), t); };
+    const u1 = onValue(ref(db, R + "/draw/" + ok), s => { O = parse(s.val()); redraw(); });
+    const u2 = onValue(ref(db, R + "/draw/" + mk), s => { if (cur) return; const n = parse(s.val()); if (!n.length) L = []; else if (!L.length) L = n; redraw(); });
+    const P = e => { const r = c.getBoundingClientRect(); return [Math.round((e.clientX - r.left) * W / r.width), Math.round((e.clientY - r.top) * W / r.height)]; };
+    c.onpointerdown = e => { cur = {c: col, w: wd, p: P(e)}; L.push(cur); redraw(); };
+    c.onpointermove = e => {
+      if (!cur) return; const [x, y] = P(e), p = cur.p;
+      if (Math.hypot(x - p[p.length - 2], y - p[p.length - 1]) < 2) return;
+      p.push(x, y); redraw(); if (!tm) tm = setTimeout(() => { tm = 0; save(); }, 300);
+    };
+    c.onpointerup = c.onpointercancel = () => { if (!cur) return; cur = null; clearTimeout(tm); tm = 0; save(); };
+    COL.forEach(k => { const b = document.createElement("button"); b.className = "sw" + (k === col ? " sel" : ""); b.style.background = k; b.setAttribute("aria-label", "Renk"); b.onclick = () => { col = k; q(".sw").forEach(x => x.classList.toggle("sel", x === b)); }; $("dp").append(b); });
+    const cu = document.createElement("input"); cu.type = "color"; cu.id = "dcu"; cu.value = "#ff6f9f"; cu.setAttribute("aria-label", "Özel renk");
+    cu.oninput = () => { col = cu.value; q(".sw").forEach(x => x.classList.remove("sel")); }; $("dp").append(cu);
+    const lbl = () => { $("dw").textContent = wd === 4 ? "✏️ İnce" : "🖌 Kalın"; }; lbl();
+    $("dw").onclick = () => { wd = wd === 4 ? 10 : 4; lbl(); };
+    $("du").onclick = () => { L.pop(); redraw(); save(); };
+    $("dx").onclick = () => {
+      if (!armed) { armed = 1; $("dx").textContent = "Emin misin? Tekrar bas"; setTimeout(() => { armed = 0; $("dx").textContent = "🗑 Temizle"; }, 4000); return; }
+      armed = 0; $("dx").textContent = "🗑 Temizle"; L = []; O = []; redraw(); set(ref(db, R + "/draw/h"), null); set(ref(db, R + "/draw/i"), null);
+    };
+    off = () => { u1(); u2(); clearTimeout(tm); };
+  }
+
+
+  function flap(){
+    const W = FL.W, H = FL.H, best0 = +(LS.get("ih_flap") || 0);
+    G.innerHTML = '<p id="fsc" style="font-weight:700;font-size:1.1rem;min-height:1.6em"></p><canvas id="flc" width="600" height="880" style="width:min(100%,440px,max(220px,calc((100dvh - 330px) * .68)));touch-action:none;border-radius:20px;border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.35);display:block;margin:0 auto"></canvas><p style="margin-top:10px">Ekrana dokun, kalp yukarı çıksın. Mercanların arasından geç, çarpma! Gittikçe hızlanır 😏</p>';
+    const c = $("flc"), g = c.getContext("2d");
+    let s = FL.fresh(), mode = "ready", best = best0, raf = 0, tprev = performance.now(), overAt = 0, bub = [], bump = 0, flash = 0;
+    for (let i = 0; i < 14; i++) bub.push({x: Math.random() * W, y: Math.random() * H, r: 2 + Math.random() * 4, v: .2 + Math.random() * .5});
+    const label = () => { $("fsc").textContent = "En iyi: " + best + (mode === "play" ? "  ·  Puan: " + s.score : ""); };
+    const tap = () => {
+      if (mode === "ready") { mode = "play"; FL.flap(s); snd.flap(); }
+      else if (mode === "play") { FL.flap(s); snd.flap(); }
+      else if (mode === "over" && performance.now() - overAt > 450) { s = FL.fresh(); mode = "ready"; flash = 0; }
+      label();
+    };
+    c.onpointerdown = e => { e.preventDefault(); tap(); };
+    const key = e => { if (e.code === "Space" || e.key === " ") { e.preventDefault(); tap(); } };
+    addEventListener("keydown", key);
+    const wave = (x0, y0, w) => { g.beginPath(); g.moveTo(x0, y0); for (let x = 0; x <= w; x += 6) g.lineTo(x0 + x, y0 + Math.sin((x + s.t * 4 + bump) * .08) * 3); };
+    const coral = (x, y0, h, up) => {
+      const gr = g.createLinearGradient(x, 0, x + FL.PW, 0); gr.addColorStop(0, "#ff9db8"); gr.addColorStop(.55, "#ff6f9f"); gr.addColorStop(1, "#c93d6f");
+      g.fillStyle = gr; g.beginPath(); g.roundRect(x, y0, FL.PW, h, 8); g.fill();
+      const cy = up ? y0 + h - 18 : y0, cg = g.createLinearGradient(x - 5, 0, x + FL.PW + 5, 0); cg.addColorStop(0, "#ffb3c8"); cg.addColorStop(1, "#d9487c");
+      g.fillStyle = cg; g.beginPath(); g.roundRect(x - 5, cy, FL.PW + 10, 18, 8); g.fill();
+      g.fillStyle = "rgba(255,255,255,.25)"; g.fillRect(x + 8, y0 + 4, 5, h - 8);
+    };
+    const draw = () => {
+      g.setTransform(2, 0, 0, 2, 0, 0);
+      const bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, "#0a3d62"); bg.addColorStop(.6, "#0f7c9a"); bg.addColorStop(1, "#1fb0c0");
+      g.fillStyle = bg; g.fillRect(0, 0, W, H);
+      g.fillStyle = "rgba(255,255,255,.06)"; for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(40 + i * 80, 0); g.lineTo(70 + i * 80, 0); g.lineTo(20 + i * 80 + 60, H - FL.GR); g.lineTo(i * 80 - 10, H - FL.GR); g.fill(); }
+      g.fillStyle = "rgba(255,255,255,.35)"; bub.forEach(b => { b.y -= b.v; if (b.y < -8) { b.y = H; b.x = Math.random() * W; } g.beginPath(); g.arc(b.x, b.y, b.r, 0, 7); g.fill(); });
+      s.p.forEach(p => { coral(p.x, 0, p.top, true); coral(p.x, p.top + p.gap, H - FL.GR - (p.top + p.gap), false); });
+      g.fillStyle = "#e8c98a"; wave(0, H - FL.GR, W); g.lineTo(W, H); g.lineTo(0, H); g.fill();
+      g.fillStyle = "#cfae6b"; for (let i = 0; i < 9; i++) { g.beginPath(); g.arc(14 + i * 34, H - FL.GR + 20 + (i % 3) * 8, 3, 0, 7); g.fill(); }
+      g.save(); g.translate(FL.BX, s.y); g.rotate(Math.max(-.5, Math.min(.9, s.v * .07))); const sc = 1 + (flash > 0 ? .25 : 0);
+      g.scale(sc, sc); g.fillStyle = "#fff"; g.font = "32px serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("💗", 0, 1); g.restore();
+      g.textAlign = "center"; g.textBaseline = "alphabetic";
+      if (mode !== "ready") { g.fillStyle = "rgba(0,0,0,.25)"; g.font = "800 46px Nunito, sans-serif"; g.fillText(s.score, W / 2 + 2, 82); g.fillStyle = "#ffd1e1"; g.fillText(s.score, W / 2, 80); }
+      if (mode === "ready") {
+        g.fillStyle = "rgba(4,34,58,.55)"; g.beginPath(); g.roundRect(40, 120, W - 80, 86, 18); g.fill();
+        g.fillStyle = "#ffd1e1"; g.font = "800 26px Nunito, sans-serif"; g.fillText("Dokun ve uç!", W / 2, 158); g.font = "600 15px Nunito, sans-serif"; g.fillText("En iyi: " + best, W / 2, 186);
+      }
+      if (mode === "over") {
+        g.fillStyle = "rgba(4,34,58,.75)"; g.beginPath(); g.roundRect(30, 130, W - 60, 130, 20); g.fill();
+        g.fillStyle = "#ffd1e1"; g.font = "800 28px Nunito, sans-serif"; g.fillText(s.score > best0 && s.score === best ? "Yeni rekor! 🎉" : "Çarptın 💔", W / 2, 172);
+        g.font = "700 20px Nunito, sans-serif"; g.fillText("Puan: " + s.score + " · En iyi: " + best, W / 2, 205);
+        g.font = "600 15px Nunito, sans-serif"; g.fillText("Tekrar için dokun", W / 2, 238);
+      }
+    };
+    const loop = now => {
+      const k = Math.min(2.5, (now - tprev) / 16.7); tprev = now; bump += k;
+      if (mode !== "over") {
+        FL.step(s, k);
+        if (s.ding) { s.ding = false; snd.ding(); flash = 8; label(); }
+        if (s.dead) {
+          mode = "over"; overAt = performance.now(); snd.lose();
+          if (s.score > best) { best = s.score; LS.set("ih_flap", String(best)); if (best >= 5) confetti(); }
+          label();
+        }
+      }
+      if (flash > 0) flash -= k;
+      draw(); raf = requestAnimationFrame(loop);
+    };
+    label(); raf = requestAnimationFrame(loop);
+    off = () => { cancelAnimationFrame(raf); removeEventListener("keydown", key); };
+  }
+
+  function mchess(){
+    const base = R + "/mchess", GL = {k: "♚", q: "♛", r: "♜", b: "♝", n: "♞", p: "♟"}, LOC = {"Hamza": "Hamza'da", "İrem": "İrem'de"};
+    const fresh = wh => ({b: MC.START, t: "w", st: "play", w: "", last: "", n: 0, half: 0, wh});
+    G.innerHTML = '<p id="cs" style="font-weight:700;min-height:1.6em;font-size:1.1rem"></p><div class="cb" id="mcb"></div><p id="ch" style="margin-top:12px"></p><div><button class="btn alt" id="mcn">Yeni oyun</button></div><p style="margin-top:10px">Taşa dokun, <b>noktalı</b> karelere gidebilirsin. <b>Kırmızı halka</b> = o taşı yiyebilirsin. Sade kurallar: rok yok, piyon tek kare ilerler, sona gelen piyon vezir olur. Şahı kurtaramazsan oyun biter.</p>';
+    let st = fresh("Hamza"), prev = null, sel = -1, targets = [], cel = false, armed = 0;
+    const board = $("mcb");
+    for (let k = 0; k < 25; k++) board.appendChild(document.createElement("div"));
+    const count = b => b.split("").filter(x => x !== ".").length;
+    const slide = (f, t, cap) => {
+      const cells = [...board.children], fe = cells.find(c => +c.dataset.i === f), te = cells.find(c => +c.dataset.i === t);
+      if (!fe || !te) return; const sp = te.querySelector(".pc"); if (!sp || !sp.animate) return;
+      const a = fe.getBoundingClientRect(), b = te.getBoundingClientRect();
+      sp.animate([{transform: "translate(" + (a.left - b.left) + "px," + (a.top - b.top) + "px) scale(1.15)"}, {transform: "none"}], {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)"});
+      if (cap) te.animate([{boxShadow: "inset 0 0 0 200px rgba(232,83,74,.75)"}, {boxShadow: "inset 0 0 0 200px rgba(232,83,74,0)"}], {duration: 450});
+    };
+    const render = anim => {
+      const meW = st.wh === me, mc = meW ? "w" : "b", other = me === "Hamza" ? "İrem" : "Hamza";
+      const order = meW ? [...Array(25).keys()] : [...Array(25).keys()].reverse();
+      const inChk = st.st === "play" && MC.inCheck(st.b, st.t), chk = inChk ? st.b.indexOf(st.t === "w" ? "K" : "k") : -1;
+      const lm = st.last ? st.last.split(",").map(Number) : [];
+      order.forEach((i, k) => {
+        const d = board.children[k], p = st.b[i], light = (Math.floor(i / 5) + i % 5) % 2 === 0;
+        d.dataset.i = i; d.textContent = "";
+        if (p !== ".") { const sp = document.createElement("span"); sp.className = "pc"; sp.textContent = GL[p.toLowerCase()] + "\uFE0E"; d.appendChild(sp); }
+        d.className = (light ? "lt" : "dk") + (p === "." ? "" : (p === p.toUpperCase() ? " pw" : " pb")) + (lm.includes(i) ? " lm" : "") + (i === sel ? " sel" : "") + (i === chk ? " ck" : "") + (targets.includes(i) ? (p === "." ? " mv" : " cp") : "");
+      });
+      if (anim) slide(anim.f, anim.t, anim.cap);
+      let t;
+      if (st.st === "mate") t = st.w === me ? "Şah mat! Kazandın 🎉" : "Şah mat, " + st.w + " kazandı 💗";
+      else if (st.st === "stale") t = "Pat, berabere 🤝";
+      else if (st.st === "draw") t = "Berabere 🤝 (uzun süredir taş yenmedi)";
+      else t = (st.t === mc ? "Sıra sende 👉" : "Sıra " + LOC[other] + "…") + (inChk ? " · Şah! ⚠️" : "");
+      $("cs").textContent = t;
+      $("ch").textContent = "Sen " + (meW ? "beyazsın (aşağıdaki açık renkli taşlar)" : "siyahsın (aşağıdaki koyu renkli taşlar)") + ".";
+      if (st.st === "mate" && st.w === me && !cel) { cel = true; confetti(); }
+      if (st.st !== "mate") cel = false;
+    };
+    board.onclick = e => {
+      const d = e.target.closest("[data-i]"); if (!d) return;
+      const i = +d.dataset.i, mc = st.wh === me ? "w" : "b";
+      if (st.st !== "play" || st.t !== mc) return;
+      if (sel >= 0 && targets.includes(i)) {
+        const nb = MC.play(st.b, sel, i), nxt = mc === "w" ? "b" : "w", reset = st.b[i] !== "." || st.b[sel].toLowerCase() === "p";
+        const half = reset ? 0 : st.half + 1; let stt = "play", w = "";
+        if (!MC.any(nb, nxt)) { if (MC.inCheck(nb, nxt)) { stt = "mate"; w = me; } else stt = "stale"; }
+        else if (half >= 50) stt = "draw";
+        const ns = {b: nb, t: nxt, st: stt, w, last: sel + "," + i, n: st.n + 1, half, wh: st.wh};
+        sel = -1; targets = []; set(ref(db, base), ns); return;
+      }
+      if (MC.col(st.b[i]) === mc && i !== sel) { sel = i; targets = MC.legal(st.b, i); snd.tick(); } else { sel = -1; targets = []; }
+      render();
+    };
+    $("mcn").onclick = () => {
+      if (st.st === "play" && st.n > 0 && !armed) { armed = 1; $("mcn").textContent = "Emin misin? Tekrar bas"; setTimeout(() => { armed = 0; $("mcn").textContent = "Yeni oyun"; }, 3500); return; }
+      armed = 0; $("mcn").textContent = "Yeni oyun"; set(ref(db, base), fresh(st.wh === "Hamza" ? "İrem" : "Hamza"));
+    };
+    const u = onValue(ref(db, base), s => {
+      const nx = s.val() || fresh("Hamza"); let anim = null;
+      if (prev && nx.n > prev.n) {
+        const mv = nx.last ? nx.last.split(",").map(Number) : null, cap = count(nx.b) < count(prev.b);
+        if (mv) anim = {f: mv[0], t: mv[1], cap};
+        if (nx.st === "mate") (nx.w === me ? snd.win() : snd.lose());
+        else if (nx.st === "play" && MC.inCheck(nx.b, nx.t)) snd.check();
+        else if (cap) snd.cap(); else snd.move();
+      }
+      prev = nx; st = nx; sel = -1; targets = []; render(anim);
+    });
+    off = () => u();
+  }
+
+  function battle(){
+    const N = 8, LEN = [4, 3, 3, 2], mk = me === "Hamza" ? "h" : "i", ok = mk === "h" ? "i" : "h", NM = {h: "Hamza", i: "İrem"}, LOC = {h: "Hamza'da", i: "İrem'de"}, base = R + "/bs", FK = "ih_bsf_" + mk;
+    G.innerHTML = '<p id="bt" style="font-weight:700;min-height:1.6em;font-size:1.1rem"></p><p id="bi" style="min-height:2.8em;white-space:pre-line"></p>' +
+      '<div id="btray" class="tray"></div><div id="bctl" class="bctl"><button class="btn alt" id="bor"></button><button class="btn alt" id="brn">🔀 Rastgele</button><button class="btn alt" id="bcl">🧹 Temizle</button></div>' +
+      '<p class="bl" id="l1"></p><div id="be"></div><p class="bl" id="l2"></p><div id="bgm"></div>' +
+      '<div style="margin-top:12px"><button class="btn" id="brd">✅ Hazırım</button> <button class="btn alt" id="bnw">Yeni oyun</button></div><p id="bh" style="margin-top:10px"></p>';
+    let g = null, ent = new Map(), rdy = {h: 0, i: 0}, fleet = null, fleetGid = 0, live = false, pend = 0, pendCell = -1, pt = 0, celebrated = false, overPlayed = false, armed = 0, starting = false;
+    let selShip = 0, hz = true, hintMsg = "", anim = -1;
+    let ev = [], ov = [], entries = [], last = null, sunkE = 0; const handled = new Set();
+    const tm = setTimeout(() => { live = true; }, 1500);
+    const gid = () => g ? g.gid : 1;
+    const empty = () => Array(N * N).fill(-1);
+    const save = () => LS.set(FK, JSON.stringify({gid: gid(), grid: fleet}));
+    const loadFleet = () => { try { const f = JSON.parse(LS.get(FK) || "null"); return f && f.gid === gid() ? f.grid : null; } catch (e) { return null; } };
+    const complete = () => !!fleet && LEN.every((L, s) => fleet.filter(v => v === s).length === L);
+    const randFleet = () => {
+      for (;;) {
+        const grid = empty(); let all = true;
+        for (let s = 0; s < LEN.length && all; s++) {
+          let placed = false;
+          for (let k = 0; k < 200 && !placed; k++) {
+            const h = Math.random() < .5, r = Math.floor(Math.random() * (h ? N : N - LEN[s] + 1)), c = Math.floor(Math.random() * (h ? N - LEN[s] + 1 : N)), cells = [];
+            for (let j = 0; j < LEN[s]; j++) cells.push((h ? r : r + j) * N + (h ? c + j : c));
+            if (cells.every(i => grid[i] < 0)) { cells.forEach(i => { grid[i] = s; }); placed = true; }
+          }
+          all = placed;
+        }
+        if (all) return grid;
+      }
+    };
+    const ensure = () => {
+      if (fleet && fleetGid === gid()) return;
+      fleet = null; const f = loadFleet();
+      if (f) { fleet = f; fleetGid = gid(); return; }
+      if (!g || g.st === "setup") { fleet = empty(); fleetGid = gid(); selShip = 0; hz = true; save(); }
+    };
+    const placeShip = (s, r, c) => {
+      const L = LEN[s]; if (hz) c = Math.min(c, N - L); else r = Math.min(r, N - L);
+      const cells = []; for (let j = 0; j < L; j++) cells.push((hz ? r : r + j) * N + (hz ? c + j : c));
+      if (cells.some(i => fleet[i] >= 0 && fleet[i] !== s)) return false;
+      fleet = fleet.map(v => v === s ? -1 : v); cells.forEach(i => { fleet[i] = s; }); return true;
+    };
+    const pick = s => {
+      const cells = []; fleet.forEach((v, j) => { if (v === s) cells.push(j); }); fleet = fleet.map(v => v === s ? -1 : v);
+      hz = cells.length < 2 || Math.floor(cells[0] / N) === Math.floor(cells[1] / N); selShip = s;
+    };
+    const nextShip = () => LEN.findIndex((_, s) => !fleet.includes(s));
+    const setupTap = i => {
+      const r = Math.floor(i / N), c = i % N, at = fleet[i];
+      if (selShip < 0) { if (at >= 0) { pick(at); hintMsg = ""; } else hintMsg = "Önce alttan bir gemi seç ⚓"; }
+      else if (placeShip(selShip, r, c)) { anim = selShip; setTimeout(() => { anim = -1; render(); }, 600); selShip = nextShip(); hintMsg = ""; }
+      else if (at >= 0 && at !== selShip) { pick(at); hintMsg = ""; }
+      else hintMsg = "Buraya sığmıyor, başka bir yer dene.";
+      save(); render();
+    };
+    const derive = () => {
+      ev = Array(N * N).fill(0); ov = Array(N * N).fill(0); sunkE = 0; last = null;
+      entries = [...ent.values()].filter(e => e.gid === gid()).sort((a, b) => a.n - b.n);
+      entries.forEach(e => {
+        if (e.by === mk) { ev[e.i] = e.hit ? 2 : 1; if (e.sunk) { e.sunk.forEach(j => { ev[j] = 3; }); sunkE++; } }
+        else ov[e.i] = e.hit ? 2 : 1;
+        last = e;
+      });
+    };
+    const shipSunk = s => fleet && fleet.every((v, j) => v !== s || ov[j] === 2);
+    const myLeft = () => fleet ? LEN.filter((_, s) => !shipSunk(s)).length : LEN.length;
+    const gridInit = (el, small) => { el.className = "bg" + (small ? " s" : ""); for (let i = 0; i < N * N; i++) { const d = document.createElement("div"); d.dataset.i = i; el.appendChild(d); } };
+    gridInit($("be"), false); gridInit($("bgm"), true);
+    const ends = i => {
+      const s = fleet[i], r = Math.floor(i / N), c = i % N, L = c > 0 && fleet[i - 1] === s, Rt = c < N - 1 && fleet[i + 1] === s, U = r > 0 && fleet[i - N] === s, D = r < N - 1 && fleet[i + N] === s; let k = "";
+      if (L || Rt) { if (!L) k += " el"; if (!Rt) k += " er"; } else { if (!U) k += " eu"; if (!D) k += " ed"; }
+      return k;
+    };
+    const paintMine = el => [...el.children].forEach((d, i) => {
+      const s = fleet ? fleet[i] : -1; let c = "";
+      if (s >= 0) c = (ov[i] === 2 ? (shipSunk(s) ? "sk" : "hi") : "sh") + ends(i) + (anim === s ? " np" : "");
+      else if (ov[i] === 1) c = "mi";
+      if (last && last.by !== mk && last.i === i) c += " ls";
+      d.className = c;
+    });
+    const paintEnemy = el => [...el.children].forEach((d, i) => {
+      const myTurn = g && g.st === "play" && g.turn === mk && !pend;
+      let c = ev[i] === 1 ? "mi" : ev[i] === 2 ? "hi" : ev[i] === 3 ? "sk" : (myTurn ? "tp" : "");
+      if (pend && pendCell === i) c = "aim";
+      if (last && last.by === mk && last.i === i) c += " ls";
+      d.className = c;
+    });
+    const msg = e => {
+      if (!e) return "";
+      const you = e.by === mk;
+      if (e.sunk) return you ? "💥 Bir düşman gemisini batırdın! Tekrar at." : "💥 Bir gemin battı! " + NM[e.by] + " tekrar atıyor.";
+      if (e.hit) return you ? "🔥 İsabet! Tekrar atabilirsin." : "🔥 Gemin vuruldu, " + NM[e.by] + " tekrar atıyor.";
+      return you ? "💧 Iska. Sıra " + LOC[ok] + "." : "💧 " + NM[e.by] + " ıskaladı, sıra sende.";
+    };
+    const render = () => {
+      ensure();
+      const st = g ? g.st : "setup", ready = rdy[mk] === gid(), oready = rdy[ok] === gid(), setup = st === "setup" && !ready;
+      $("btray").hidden = $("bctl").hidden = !setup;
+      $("brd").hidden = !setup; $("brd").disabled = !complete();
+      $("bnw").hidden = st === "setup"; $("bnw").textContent = st === "over" ? "Tekrar oyna" : "Yeni oyun";
+      $("bgm").hidden = $("l2").hidden = st === "setup";
+      if (setup && fleet) {
+        const tr = $("btray");
+        if (!tr.children.length) LEN.forEach((L, s) => { const b = document.createElement("button"); b.dataset.s = s; for (let j = 0; j < L; j++) b.appendChild(document.createElement("i")); tr.appendChild(b); });
+        [...tr.children].forEach((b, s) => { b.className = "sp" + (s === selShip ? " sel" : "") + (fleet.includes(s) ? " done" : ""); });
+        $("bor").textContent = hz ? "↔ Yatay" : "↕ Dikey";
+      }
+      if (st === "setup") {
+        $("bt").textContent = ready ? (oready ? "İkiniz de hazırsınız…" : NM[ok] + " hazırlanıyor, bekliyorum…") : (complete() ? "Gemilerin hazır ✅ Hazırım'a bas" : "Gemilerini diz ⚓");
+        $("bi").textContent = ready ? "Hazır! Oyun başlayınca ilk atışı Hamza yapar." : (hintMsg || ((oready ? NM[ok] + " hazır, seni bekliyor.\n" : "") + "Alttan bir gemi seç, tahtada başlayacağı kareye dokun. ↔/↕ ile yönü değiştirirsin. Dizdiğin gemiye dokunursan yerini değiştirirsin."));
+        $("l1").textContent = "Senin filon";
+        paintMine($("be"));
+        $("bh").textContent = "Kurallar: sırayla bir kareye ateş edersiniz. İsabet edersen tekrar atarsın, ıskalarsan sıra rakibe geçer. Tüm gemileri ilk batıran kazanır.";
+      } else {
+        if (st === "over") $("bt").textContent = g.win === mk ? "Kazandın! 🎉 Tüm gemileri batırdın" : NM[ok] + " kazandı 💗 Tüm gemilerin battı";
+        else if (!fleet) $("bt").textContent = "Filon bulunamadı (tarayıcı verisi silinmiş). Yeni oyun başlat.";
+        else if (g.turn === mk) $("bt").textContent = pend ? "Atış gidiyor…" : "Sıra sende — bir kareye ateş et 🎯";
+        else $("bt").textContent = "Sıra " + LOC[ok] + "…";
+        $("bi").textContent = (st === "over" ? "" : msg(last) + "\n") + "Düşman gemisi: " + (LEN.length - sunkE) + " kaldı · Senin gemilerin: " + myLeft() + " kaldı";
+        $("l1").textContent = "🎯 Düşman denizi" + (st === "play" ? " (ateş etmek için dokun)" : "");
+        $("l2").textContent = "🚢 Senin filon";
+        paintEnemy($("be")); paintMine($("bgm"));
+        $("bh").textContent = "💥 isabet · beyaz nokta ıska · 🔥 batan gemi";
+      }
+      if (st === "over" && g.win === mk && !celebrated) { celebrated = true; confetti(); }
+      if (st !== "over") { celebrated = false; overPlayed = false; }
+    };
+    const maybeStart = () => {
+      if (mk === "h" && !starting && (!g || g.st === "setup") && rdy.h === gid() && rdy.i === gid()) {
+        starting = true; set(ref(db, base + "/g"), {gid: gid(), st: "play", turn: "h", win: ""});
+      }
+    };
+    const fire = i => {
+      if (!g || g.st !== "play" || g.turn !== mk || pend || ev[i]) return;
+      pend = Date.now(); pendCell = i; clearTimeout(pt); pt = setTimeout(() => { pend = 0; render(); }, 8000);
+      set(ref(db, base + "/shot"), {gid: g.gid, n: pend, by: mk, i}); snd.tick(); render();
+    };
+    const respond = sh => {
+      if (!sh || !g || g.st !== "play" || sh.gid !== g.gid || sh.by === mk || !fleet) return;
+      const key = sh.gid + ":" + sh.n; if (handled.has(key)) return;
+      if ([...ent.values()].some(e => e.n === sh.n && e.gid === sh.gid)) { handled.add(key); return; }
+      handled.add(key); derive();
+      const s = fleet[sh.i], hit = s >= 0; let sunk = 0, win = false;
+      if (hit) {
+        const cells = []; fleet.forEach((v, j) => { if (v === s) cells.push(j); });
+        if (cells.every(j => j === sh.i || ov[j] === 2)) sunk = cells;
+        win = fleet.every((v, j) => v < 0 || j === sh.i || ov[j] === 2);
+      }
+      push(ref(db, base + "/log"), {gid: sh.gid, n: sh.n, by: sh.by, i: sh.i, hit, sunk});
+      set(ref(db, base + "/g"), {gid: g.gid, st: win ? "over" : "play", turn: win ? "" : (hit ? sh.by : mk), win: win ? sh.by : ""});
+    };
+    $("be").onclick = e => {
+      const d = e.target.closest("[data-i]"); if (!d) return; const i = +d.dataset.i, st = g ? g.st : "setup";
+      if (st === "play") fire(i); else if (st === "setup" && rdy[mk] !== gid() && fleet) setupTap(i);
+    };
+    $("btray").onclick = e => {
+      const b = e.target.closest("button"); if (!b || !fleet) return; const s = +b.dataset.s;
+      if (fleet.includes(s)) pick(s); else selShip = s;
+      hintMsg = ""; save(); render();
+    };
+    $("bor").onclick = () => { hz = !hz; render(); };
+    $("brn").onclick = () => { if (rdy[mk] === gid()) return; fleet = randFleet(); fleetGid = gid(); selShip = -1; hintMsg = ""; save(); snd.tick(); render(); };
+    $("bcl").onclick = () => { if (rdy[mk] === gid()) return; fleet = empty(); selShip = 0; hintMsg = ""; save(); snd.tick(); render(); };
+    $("brd").onclick = () => { if (!complete()) return; set(ref(db, base + "/rdy_" + mk), gid()); snd.tick(); };
+    $("bnw").onclick = () => {
+      if (g && g.st === "play" && !armed) { armed = 1; $("bnw").textContent = "Emin misin? Tekrar bas"; setTimeout(() => { armed = 0; render(); }, 3500); return; }
+      armed = 0; const ng = Date.now();
+      set(ref(db, base + "/shot"), null); set(ref(db, base + "/log"), null); set(ref(db, base + "/g"), {gid: ng, st: "setup", turn: "", win: ""});
+    };
+    const u1 = onValue(ref(db, base + "/g"), s => {
+      const old = g; g = s.val();
+      if (!old || !g || old.gid !== g.gid) { pend = 0; starting = false; }
+      if (g && g.st === "setup") starting = false;
+      ensure(); derive();
+      if (g && g.st === "over" && live && !overPlayed) { overPlayed = true; setTimeout(() => (g.win === mk ? snd.win() : snd.lose()), 700); }
+      render(); maybeStart();
+    });
+    const u2 = onValue(ref(db, base + "/rdy_h"), s => { rdy.h = s.val() || 0; maybeStart(); render(); });
+    const u3 = onValue(ref(db, base + "/rdy_i"), s => { rdy.i = s.val() || 0; maybeStart(); render(); });
+    const u4 = onValue(ref(db, base + "/shot"), s => respond(s.val()));
+    const u5 = onChildAdded(ref(db, base + "/log"), s => {
+      const e = s.val(); ent.set(s.key, e); derive();
+      if (e.by === mk && e.n === pend) { pend = 0; clearTimeout(pt); }
+      if (live && e.gid === gid()) { if (e.sunk) snd.sink(); else if (e.hit) snd.boom(); else snd.splash(); }
+      render();
+    });
+    const u6 = onChildRemoved(ref(db, base + "/log"), s => { ent.delete(s.key); derive(); render(); });
+    off = () => { [u1, u2, u3, u4, u5, u6].forEach(f => { try { f(); } catch (e) {} }); clearTimeout(tm); clearTimeout(pt); };
+  }
+
+  function flirt(){
+    const mk = me === "Hamza" ? "h" : "i", PN = {h: "Hamza", i: "İrem"}, r = ref(db, R + "/flirt");
+    const CARDS = {
+      t: [
+        "Ona sesli mesaj at: seni ilk gördüğünde ne hissettiğini anlat.",
+        "Bu hafta için ona küçük bir sürpriz planla ve sadece ipucu ver.",
+        "Gözlerini kapat, ona sarıldığını hayal et ve ne hissettiğini yaz.",
+        "Ona en çok özlediğin şeyi söyle.",
+        "Görüntülü aramada 30 saniye hiç konuşmadan sadece gözlerinin içine bak.",
+        "Ona seni güldüren bir anımızı anlat.",
+        "Bir şarkı seç, ona gönder ve neden o şarkı olduğunu söyle.",
+        "Kavuştuğumuzda yapacağımız ilk üç şeyi say.",
+        "Ona bugün ne kadar çekici bulduğunu hissettirecek bir cümle yaz."
+      ],
+      s: [
+        "Sesli mesajla kulağına fısıldıyormuşsun gibi, seni en çok çeken yanını anlat 😏",
+        "Yan yana olsaydık ilk 10 dakikada ne yapmak isterdin? Anlat, sınırı sen belirle.",
+        "Onu en çekici bulduğun anı ayrıntılı anlat.",
+        "Yanında olsaydın ona nasıl sarılıp boynuna nasıl öpücükler konduracağını anlat.",
+        "Yanında olsaydın bu akşam ne giymesini isterdin? Söyle.",
+        "Seni en çok heyecanlandıran öpücüğümüzü anlat.",
+        "Gözlerini kapatsın, sen ona sesinle 1 dakika boyunca onu nasıl hayal ettiğini fısılda.",
+        "Işıkların kısık olduğu, sadece ikinizin olduğu bir geceyi hayal edip ona anlat. Sınırı sen belirle 🔥",
+        "Bir sonraki buluşmada onu nasıl karşılayacağını fısıltıyla anlat 😈",
+        "Ona nefesini kesecek bir iltifat yaz.",
+        "Sırayla üç cümlelik sıcak bir hayal yazın. Sınırı kimse aşmasın.",
+        "Onda seni en çok baştan çıkaran şeyi söyle ve nedenini anlat.",
+        "Sesini alçalt, ona ne kadar istediğini ve özlediğini söyle.",
+        "Sesli mesajla sadece şunu söyle: \"Seni şu an yanımda istiyorum.\" Gerisini hayal etsin.",
+        "Ona şu an ne hissettiğini fısılda ve cümleyi yarım bırak: \"Buluşunca anlatacağım…\"",
+        "Seni en çok ne zaman \"kendimi zor tutuyorum\" dedirttiğini anlat. Sadece ima et.",
+        "Bu geceyi tek bir kelimeyle tarif et (ateş, ipek, yavaş…) ve neden seçtiğini söyle.",
+        "Ona en çok nerede dokunmak istediğini sor: elini mi, saçını mı, yüzünü mü? Neden?",
+        "\"Bu gece…\" diye başlayan bir cümle kur ve yarım bırak. Merakta kalsın."
+      ]
+    };
+    G.innerHTML = '<p>Kartı çeken kişi kartı sevgilisine uygular 💋 Hoşuna gitmeyeni pas geçebilirsin, sınırı sen belirlersin.</p><div class="row"><button class="btn alt" id="fl1">😘 Tatlı</button><button class="btn alt" id="fl2">🔥 Sıcak</button></div><div class="gift open" id="fc" style="min-height:140px;display:grid;place-items:center;margin:12px 0;font-size:1.1rem;padding:16px">Seviyeyi seç, sonra kart çek</div><p id="fs"></p><div><button class="btn" id="fd">Kart çek</button><button class="btn alt" id="fp">Pas geç</button></div>';
+    const HOT_ON = true; $("fl2").hidden = !HOT_ON;
+    let st = null, lvl = "t";
+    const lv = () => { $("fl1").classList.toggle("sel", lvl === "t"); $("fl2").classList.toggle("sel", lvl === "s"); };
+    const draw = () => {
+      lv();
+      $("fc").textContent = st && st.card ? PN[st.by] + " için kart: " + st.card : "Seviyeyi seç, sonra kart çek";
+      $("fs").textContent = !st || !st.turn ? "İlk kartı sen çek sevgilim" : st.turn === mk ? "Sıra sende, kart çek 💋" : "Sıra " + PN[st.turn] + "'de";
+      $("fd").hidden = !!(st && st.turn && st.turn !== mk);
+      $("fp").hidden = !(st && st.by === mk && st.card);
+    };
+    const pick = () => { const L = CARDS[lvl]; let c; do { c = L[Math.floor(Math.random() * L.length)]; } while (st && st.card === c && L.length > 1); return c; };
+    $("fl1").onclick = () => { lvl = "t"; lv(); };
+    $("fl2").onclick = () => { lvl = "s"; lv(); };
+    $("fd").onclick = () => set(r, {by: mk, card: pick(), turn: mk === "h" ? "i" : "h", n: Date.now()});
+    $("fp").onclick = () => set(r, {by: mk, card: pick(), turn: st.turn, n: Date.now()});
+    off = onValue(r, s => { st = s.val(); draw(); });
+    lv();
+  }
+
+  /* Mesajlaşma */
+  const msgs = $("msgs");
+  if (!db) { msgs.innerHTML = NODB; $("fm").hidden = true; $("clr").hidden = true; return; }
+  const rows = new Map(), chatQ = query(ref(db, R + "/chat"), limitToLast(100));
+  onChildAdded(chatQ, s => {
+    const m = s.val(), el = document.createElement("div"); el.className = "m" + (m.name === me ? " me" : "");
+    const t = document.createElement("span"); t.textContent = m.text;
+    const sm = document.createElement("small");
+    sm.textContent = m.name + " · " + (m.ts ? new Date(m.ts).toLocaleString("tr-TR", {day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) : "");
+    el.append(t, sm); msgs.append(el); rows.set(s.key, el); onMsg(m);
+    msgs.scrollTop = msgs.scrollHeight; showUnread();
+  });
+  onChildRemoved(chatQ, s => { const el = rows.get(s.key); if (el) el.remove(); rows.delete(s.key); if (!rows.size) { unread = 0; showUnread(); } });
+  let armed = 0; const CL = "🗑 Tüm sohbeti herkesten sil";
+  $("clr").onclick = () => {
+    if (!armed) { armed = 1; $("clr").textContent = "Emin misin? Silmek için tekrar bas"; setTimeout(() => { armed = 0; $("clr").textContent = CL; }, 4000); return; }
+    armed = 0; $("clr").textContent = CL;
+    set(ref(db, R + "/chat"), null).catch(() => { $("clr").textContent = "Silinemedi, tekrar dene"; });
+  };
+  const send = () => {
+    const text = $("mi").value.trim(); if (!text) return;
+    push(ref(db, R + "/chat"), { name: me, text, ts: Date.now() });
+    $("mi").value = "";
+  };
+  $("sd").onclick = send;
+  $("mi").onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send(); } };
+}
+</script>
+</body>
+</html>
