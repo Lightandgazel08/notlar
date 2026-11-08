@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizim Dünyamız</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- GİRİŞ EKRANI -->
+    <div id="login-screen" class="screen active">
+        <div class="login-box">
+            <h1>Hoş Geldin ❤️</h1>
+            <p>Bize özel dünyaya girmek için şifremizi yaz:</p>
+            <!-- Varsayılan şifreyi 1234 yaptım, değiştirebilirsin -->
+            <input type="password" id="password-input" placeholder="Şifre...">
+            <button onclick="checkPassword()">Giriş Yap</button>
+            <p id="login-error">Şifre yanlış sevgilim, tekrar dene! 🥺</p>
+        </div>
+    </div>
+
+    <!-- ANA UYGULAMA (Giriş yaptıktan sonra açılır) -->
+    <div id="main-app" class="screen">
+        
+        <!-- ANA SAYFA (Sayaç) -->
+        <div id="home-tab" class="tab-content active-tab">
+            <h1>Seni Çok Seviyorum 💖</h1>
+            <div class="counter-box">
+                <h2>Birlikte Geçen Zaman</h2>
+                <div id="timer">Yükleniyor...</div>
+            </div>
+            <div class="gallery">
+                <div class="card">Foto 1</div>
+                <div class="card">Foto 2</div>
+            </div>
+        </div>
+
+        <!-- SOHBET EKRANI -->
+        <div id="chat-tab" class="tab-content">
+            <h2>Mesajlaşma 💬</h2>
+            <div class="chat-container">
+                <div id="chat-box">
+                    <div class="message system">Buraya yazılanlar Firebase ile canlı iletilecek! Altyapı hazır. 🚀</div>
+                    <div class="message received">Merhaba aşkım 💕</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="message-input" placeholder="Mesajını yaz...">
+                    <button onclick="sendMessage()">Gönder</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OYUN EKRANI (XOX) -->
+        <div id="game-tab" class="tab-content">
+            <h2>Aşk XOX'u 🎮</h2>
+            <p>Kim kazanacak bakalım? (X: 💖, O: 💙)</p>
+            <div class="board" id="board">
+                <div class="cell" onclick="makeMove(0)"></div>
+                <div class="cell" onclick="makeMove(1)"></div>
+                <div class="cell" onclick="makeMove(2)"></div>
+                <div class="cell" onclick="makeMove(3)"></div>
+                <div class="cell" onclick="makeMove(4)"></div>
+                <div class="cell" onclick="makeMove(5)"></div>
+                <div class="cell" onclick="makeMove(6)"></div>
+                <div class="cell" onclick="makeMove(7)"></div>
+                <div class="cell" onclick="makeMove(8)"></div>
+            </div>
+            <button class="reset-btn" onclick="resetGame()">Yeniden Oyna</button>
+        </div>
+
+        <!-- ALT MENÜ -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active-nav" onclick="openTab('home-tab', this)">🏠<br>Ana Sayfa</button>
+            <button class="nav-btn" onclick="openTab('chat-tab', this)">💬<br>Sohbet</button>
+            <button class="nav-btn" onclick="openTab('game-tab', this)">🎮<br>Oyun</button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
